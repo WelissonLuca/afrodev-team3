@@ -1,0 +1,39 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "swagger-autogen": "node swagger.js",
+    "start": "cross-env NODE_ENV=dev nodemon index.js",
+    "test": "cross-env NODE_ENV=test npx sequelize db:migrate && jest --runInBand --forceExit --coverage",
+    "test:watch": "jest --watch",
+    "migration": "npx sequelize db:migrate",
+    "migration:undo": "npx sequelize db:migrate:undo",
+    "lint": "eslint --fix ."
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "consign": "^0.1.6",
+    "dotenv": "^8.2.0",
+    "eslint-plugin-jest": "^24.3.5",
+    "express": "^4.17.1",
+    "express-validator": "^6.10.0",
+    "iconv-lite": "^0.6.2",
+    "mysql2": "^2.2.5",
+    "sequelize": "^6.5.0",
+    "swagger-autogen": "^2.7.9",
+    "swagger-ui-express": "^4.1.6"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "eslint": "^7.24.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "jest": "^26.6.3",
+    "nodemon": "^2.0.7",
+    "sequelize-cli": "^6.2.0",
+    "supertest": "^6.1.3"
+  }
+}
