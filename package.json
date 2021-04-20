@@ -8,8 +8,8 @@
     "start": "cross-env NODE_ENV=dev nodemon index.js",
     "test": "cross-env NODE_ENV=test npx sequelize db:migrate && jest --runInBand --forceExit --coverage",
     "test:watch": "jest --watch",
-    "migration": "npx sequelize db:migrate",
-    "migration:undo": "npx sequelize db:migrate:undo",
+    "migration": "cross-env NODE_ENV=dev npx sequelize db:migrate",
+    "migration:undo": "cross-env NODE_ENV=dev npx sequelize db:migrate:undo",
     "lint": "eslint --fix ."
   },
   "author": "",
