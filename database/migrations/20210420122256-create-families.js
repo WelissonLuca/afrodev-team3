@@ -39,7 +39,7 @@ module.exports = {
       allowNull: false,
     },
     per_capita_income: {
-      type: Sequelize.STRING,
+      type: Sequelize.DECIMAL,
       allowNull: false,
     },
     created_at: {
