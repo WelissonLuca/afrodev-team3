@@ -16,7 +16,9 @@
   "paths": {
     "/ong": {
       "post": {
-        "tags": [],
+        "tags": [
+          "Ongs"
+        ],
         "description": "",
         "parameters": [
           {
@@ -53,21 +55,32 @@
           }
         ],
         "responses": {
+          "200": {
+            "description": "OK"
+          },
           "400": {
             "description": "Bad Request"
           }
         }
       },
       "get": {
-        "tags": [],
+        "tags": [
+          "Ongs"
+        ],
         "description": "",
         "parameters": [],
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
       }
     },
     "/ong/{id}": {
       "get": {
-        "tags": [],
+        "tags": [
+          "Ongs"
+        ],
         "description": "",
         "parameters": [
           {
@@ -77,10 +90,16 @@
             "type": "string"
           }
         ],
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
       },
       "put": {
-        "tags": [],
+        "tags": [
+          "Ongs"
+        ],
         "description": "",
         "parameters": [
           {
@@ -123,13 +142,18 @@
           }
         ],
         "responses": {
+          "200": {
+            "description": "OK"
+          },
           "400": {
             "description": "Bad Request"
           }
         }
       },
       "patch": {
-        "tags": [],
+        "tags": [
+          "Ongs"
+        ],
         "description": "",
         "parameters": [
           {
@@ -172,13 +196,18 @@
           }
         ],
         "responses": {
+          "200": {
+            "description": "OK"
+          },
           "400": {
             "description": "Bad Request"
           }
         }
       },
       "delete": {
-        "tags": [],
+        "tags": [
+          "Ongs"
+        ],
         "description": "",
         "parameters": [
           {
@@ -188,7 +217,272 @@
             "type": "string"
           }
         ],
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/supply": {
+      "post": {
+        "tags": [
+          "Supplies"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "post supply object",
+            "in": "body",
+            "description": "New supply values",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "new supply"
+                },
+                "description": {
+                  "type": "string",
+                  "example": "supply description"
+                },
+                "category": {
+                  "type": "string",
+                  "example": "supply category"
+                },
+                "type": {
+                  "type": "string",
+                  "example": "supply type"
+                },
+                "price": {
+                  "type": "number",
+                  "example": 999.999
+                },
+                "quantity": {
+                  "type": "number",
+                  "example": 99.999
+                }
+              },
+              "required": [
+                "name",
+                "description",
+                "category",
+                "type",
+                "price",
+                "quantity"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Supplies"
+        ],
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/supply/{id}": {
+      "get": {
+        "tags": [
+          "Supplies"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Supplies"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "put supply object",
+            "in": "body",
+            "description": "New supply values",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "new supply"
+                },
+                "description": {
+                  "type": "string",
+                  "example": "supply description"
+                },
+                "category": {
+                  "type": "string",
+                  "example": "supply category"
+                },
+                "type": {
+                  "type": "string",
+                  "example": "supply type"
+                },
+                "price": {
+                  "type": "number",
+                  "example": 999.999
+                },
+                "quantity": {
+                  "type": "number",
+                  "example": 99.999
+                }
+              },
+              "required": [
+                "name",
+                "description",
+                "category",
+                "type",
+                "price",
+                "quantity"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Supplies"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "patch supply object",
+            "in": "body",
+            "description": "New supply values",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "new supply"
+                },
+                "description": {
+                  "type": "string",
+                  "example": "supply description"
+                },
+                "category": {
+                  "type": "string",
+                  "example": "supply category"
+                },
+                "type": {
+                  "type": "string",
+                  "example": "supply type"
+                },
+                "price": {
+                  "type": "number",
+                  "example": 999.999
+                },
+                "quantity": {
+                  "type": "number",
+                  "example": 99.999
+                }
+              },
+              "required": [
+                "name",
+                "description",
+                "category",
+                "type",
+                "price",
+                "quantity"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Supplies"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/supply/name/{name}": {
+      "get": {
+        "tags": [
+          "Supplies"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
       }
     }
   },
