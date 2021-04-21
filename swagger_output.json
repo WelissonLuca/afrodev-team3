@@ -190,6 +190,183 @@
         ],
         "responses": {}
       }
+    },
+    "/drug": {
+      "post": {
+        "tags": [],
+        "description": "",
+        "parameters": [
+          {
+            "name": "post drug object",
+            "in": "body",
+            "description": "New drug values",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "new drug"
+                },
+                "quantity": {
+                  "type": "string",
+                  "example": "999.999"
+                },
+                "category": {
+                  "type": "string",
+                  "example": "drug category"
+                },
+                "description": {
+                  "type": "string",
+                  "example": "drug description"
+                }
+              },
+              "required": [
+                "name",
+                "quantity",
+                "category",
+                "description"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "get": {
+        "tags": [],
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/drug/{id}": {
+      "get": {
+        "tags": [],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {}
+      },
+      "put": {
+        "tags": [],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "put drug object",
+            "in": "body",
+            "description": "New drug values",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "new drug"
+                },
+                "quantity": {
+                  "type": "string",
+                  "example": "999.999"
+                },
+                "category": {
+                  "type": "string",
+                  "example": "drug category"
+                },
+                "description": {
+                  "type": "string",
+                  "example": "drug description"
+                }
+              },
+              "required": [
+                "name",
+                "quantity",
+                "category",
+                "description"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "patch": {
+        "tags": [],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "patch drug object",
+            "in": "body",
+            "description": "New drug values",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "new drug"
+                },
+                "quantity": {
+                  "type": "string",
+                  "example": "999.999"
+                },
+                "category": {
+                  "type": "string",
+                  "example": "drug category"
+                },
+                "description": {
+                  "type": "string",
+                  "example": "drug description"
+                }
+              },
+              "required": [
+                "name",
+                "quantity",
+                "category",
+                "description"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "delete": {
+        "tags": [],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {}
+      }
     }
   },
   "definitions": {}

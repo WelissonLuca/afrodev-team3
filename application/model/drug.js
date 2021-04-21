@@ -8,6 +8,7 @@ class Drug extends Model {
       {
         id: {
           type: DataTypes.INTEGER,
+          autoIncrement: true,
           allowNull: false,
           primaryKey: true,
         },
@@ -16,20 +17,30 @@ class Drug extends Model {
           allowNull: false,
         },
         quantity: {
-          type: DataTypes.DECIMAL(10, 3),
+          type: DataTypes.INTEGER,
           allowNull: false,
-          defaultValue: 0,
+        },
+        category: {
+          type: DataTypes.ENUM(
+            'alopatico',
+            'fitoterapico',
+            'homeopatico',
+            'generico',
+            'referencia',
+            'manipulado',
+            'outros',
+          ),
+          allowNull: false,
         },
         description: DataTypes.STRING,
-        type: DataTypes.STRING,
       },
       {
         sequelize,
         underscored: true,
-        tableName: "drugs",
-      }
+        tableName: 'drugs',
+      },
     );
   }
-};
+}
 
 module.exports = Drug;
