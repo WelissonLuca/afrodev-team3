@@ -26,7 +26,22 @@ exports.findAll = async (family) => {
   }
 };
 
-<<<<<<< HEAD
+exports.findById = async (id) => {
+  try {
+    const families = await Families.findAll({
+      where: {
+        id,
+      },
+    });
+    return families;
+  } catch (err) {
+    console.log(err);
+    const error = new Error('An error ocurred while finding families by id');
+    error.statusCode = 500;
+    throw error;
+  }
+};
+
 exports.update = async (id, newFamily) => {
   try {
     const family = await Families.findOne({ id });
@@ -36,7 +51,11 @@ exports.update = async (id, newFamily) => {
   } catch (err) {
     console.log(err);
     const error = new Error('An error ocurred while updating family');
-=======
+    error.statusCode = 500;
+    throw error;
+  }
+};
+
 exports.patch = async (id, newFamily) => {
   try {
     return await Families.update(newFamily, {
@@ -46,7 +65,7 @@ exports.patch = async (id, newFamily) => {
     });
   } catch (err) {
     console.log(err);
-    const error = new Error('An error ocurred while updating ong');
+    const error = new Error('An error ocurred while updating family');
     error.statusCode = 500;
     throw error;
   }
@@ -62,15 +81,9 @@ exports.delete = async (id) => {
     return family;
   } catch (err) {
     console.log(err);
-    const error = new Error('An error ocurred while deleting ong');
->>>>>>> 8b48ae874a9054e8e9d33b8c8d7ededa038c2d4d
+    const error = new Error('An error ocurred while deleting family');
+
     error.statusCode = 500;
     throw error;
   }
 };
-<<<<<<< HEAD
-=======
-
-
-
->>>>>>> 8b48ae874a9054e8e9d33b8c8d7ededa038c2d4d

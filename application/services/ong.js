@@ -3,7 +3,7 @@ const Ong = require('../model/ong');
 exports.register = async (ong) => {
   try {
     const newOng = await Ong.create(ong);
-    console.log(ong)
+    console.log(ong);
     return newOng;
   } catch (err) {
     console.log(err);
