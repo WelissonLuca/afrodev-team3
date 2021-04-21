@@ -17,7 +17,7 @@ class Families extends Model {
           allowNull: false,
         },
         age: {
-          type: DataTypes.STRING,
+          type: DataTypes.STRING, 
           allowNull: false,
         },
         cpf: {

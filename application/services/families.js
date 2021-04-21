@@ -1,14 +1,20 @@
-const Family = require('../model/families');
+const Families = require('../model/families');
 
-exports.post = async (request) => {
-  const result = await familyService.register(request.body);
-  console.log(result);
-  return result;
+exports.register = async (family) => {
+  try {
+    const newFamily = await Families.create(family);
+    return newFamily;
+  } catch (err) {
+    console.log(err);
+    const error = new Error('An error ocurred while creating family');
+    error.statusCode = 500;
+    throw error;
+  }
 };
 
 exports.findAll = async (family) => {
   try {
-    const families = await Family.findAll({
+    const families = await Families.findAll({
       where: family,
     });
     return families;
@@ -19,3 +25,6 @@ exports.findAll = async (family) => {
     throw error;
   }
 };
+
+
+
