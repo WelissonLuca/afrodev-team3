@@ -18,7 +18,7 @@ module.exports = {
           allowNull: false,
         },
         quantity: {
-          type: Sequelize.INTEGER,
+          type: Sequelize.DECIMAL,
           allowNull: false
         },
         type: {
