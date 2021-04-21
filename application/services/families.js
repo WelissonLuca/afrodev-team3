@@ -26,5 +26,36 @@ exports.findAll = async (family) => {
   }
 };
 
+exports.patch = async (id, newFamily) => {
+  try {
+    return await Families.update(newFamily, {
+      where: {
+        id,
+      },
+    });
+  } catch (err) {
+    console.log(err);
+    const error = new Error('An error ocurred while updating ong');
+    error.statusCode = 500;
+    throw error;
+  }
+};
+
+exports.delete = async (id) => {
+  try {
+    const family = await Families.destroy({
+      where: {
+        id,
+      },
+    });
+    return family;
+  } catch (err) {
+    console.log(err);
+    const error = new Error('An error ocurred while deleting ong');
+    error.statusCode = 500;
+    throw error;
+  }
+};
+
 
 

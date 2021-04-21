@@ -12,5 +12,13 @@ exports.get = async (request) => {
   return result;
 };
 
+exports.patch = async (id, request) => {
+  const result = await familyService.patch(id, request.body);
+  return result;
+};
 
 
+exports.delete = async (id) => {
+  const result = await familyService.delete(id);
+  return result;
+};
