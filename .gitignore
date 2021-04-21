@@ -1,4 +1,4 @@
 node_modules/
 coverage/
-.env.dev/
-.env.test/
+.env.dev
+.env.test
