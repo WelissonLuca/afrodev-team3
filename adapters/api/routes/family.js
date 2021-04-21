@@ -29,7 +29,11 @@ module.exports = (app) => {
     return reply.json(response);
   });
 
-  app.put('/family/:id', async (request, reply) => {
+  app.put('/family/:id', validators.updateValidator(), async (request, reply) => {
+    const errors = validators.validateRequest(request);
+    if (errors.length > 0) {
+      return invalidRequestReply(request, reply, errors);
+    }
     const response = await controller.put(request.params.id, request, reply);
     return reply.json(response);
   });
