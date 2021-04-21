@@ -120,6 +120,6 @@ module.exports = (app) => {
   app.delete('/supply/:id', async (request, reply) => {
     //  #swagger.tags = ['Supplies']
     const response = await controller.delete(request.params.id, request, reply);
-    return reply.status(200).json(response);
+    return reply.status(204).send();
   });
 };
