@@ -1,5 +1,4 @@
-node_modules/*
-coverage/*
-
-.env.dev
-.env.test
+node_modules/
+coverage/
+.env.dev/
+.env.test/
