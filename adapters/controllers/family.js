@@ -10,7 +10,20 @@ exports.get = async (request) => {
   return result;
 };
 
+<<<<<<< HEAD
 exports.put = async (id, request) => {
   const result = await familyService.update(id, request.body);
   return result;
 };
+=======
+exports.patch = async (id, request) => {
+  const result = await familyService.patch(id, request.body);
+  return result;
+};
+
+
+exports.delete = async (id) => {
+  const result = await familyService.delete(id);
+  return result;
+};
+>>>>>>> 8b48ae874a9054e8e9d33b8c8d7ededa038c2d4d
