@@ -20,6 +20,14 @@ class Families extends Model {
           type: DataTypes.STRING,
           allowNull: false,
         },
+        email: {
+          type: DataTypes.STRING,
+          allowNull: false,
+        },
+        phone: {
+          type: DataTypes.STRING,
+          allowNull: false,
+        },
         cpf: {
           type: DataTypes.STRING,
           allowNull: false,
@@ -40,10 +48,7 @@ class Families extends Model {
           type: DataTypes.INTEGER,
           allowNull: false,
         },
-        children: {
-          type: DataTypes.INTEGER,
-          allowNull: false,
-        },
+        children: DataTypes.INTEGER,
         per_capita_income: {
           type: DataTypes.DECIMAL,
           allowNull: false,
