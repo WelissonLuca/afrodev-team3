@@ -53,8 +53,7 @@ module.exports = (app) => {
   });
 
   app.put('/family/:id', validators.updateValidator(), async (request, reply) => {
-    /*
-     #swagger.tags = ['Families'],
+    /* #swagger.tags = ['Families'],
     #swagger.parameters['put family object'] = {
             in: 'body',
             description: "New family values",
@@ -78,9 +77,8 @@ module.exports = (app) => {
     return reply.json(response);
   });
 
-  app.patch('/family/:id', async (request, reply) => {
-    /*
-     #swagger.tags = ['Families'],
+  app.patch('/family/:id', validators.patchValidator(), async (request, reply) => {
+    /* #swagger.tags = ['Families'],
     #swagger.parameters['patch family object'] = {
         in: 'body',
         description: "New family values",
@@ -99,12 +97,18 @@ module.exports = (app) => {
       } */
     const response = await controller.patch(request.params.id, request, reply);
     console.log(response);
-    return reply.json(response);
+    return reply.json({
+      response,
+      message: 'family update successfully',
+    });
   });
 
   app.delete('/family/:id', async (request, reply) => {
     /* #swagger.tags = ['Families'] */
     const response = await controller.delete(request.params.id, request, reply);
-    return reply.json(response);
+    return reply.json({
+      response,
+      message: 'family deleted successfully',
+    });
   });
 };

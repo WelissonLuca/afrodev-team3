@@ -35,20 +35,27 @@ exports.registerValidator = () => [
 ];
 
 exports.updateValidator = () => [
-  check('name').notEmpty().withMessage('name is required'),
-  check('age').notEmpty().withMessage('age is required'),
   check('email')
-    .notEmpty()
-    .withMessage('email is required')
+    .optional()
     .isEmail()
     .withMessage('invalid email'),
   check('phone')
     .optional()
     .custom((val) => /^\([0-9]{2}\)\s?[0-9]{4,5}-[0-9]{4}$/g.test(val))
     .withMessage('invalid phone format'),
-  check('address').notEmpty().withMessage('address is required'),
-  check('civil_status').notEmpty().withMessage('civil_status is required'),
-  check('per_capita_income')
-    .notEmpty()
-    .withMessage('per capita income is required'),
+];
+
+exports.patchValidator = () => [
+  check('email')
+    .optional()
+    .isEmail()
+    .withMessage('invalid email'),
+  check('phone')
+    .custom((val) => {
+      if (val) {
+        return /^\([0-9]{2}\)\s?[0-9]{4,5}-[0-9]{4}$/g.test(val);
+      }
+      return true;
+    })
+    .withMessage('invalid phone format'),
 ];
