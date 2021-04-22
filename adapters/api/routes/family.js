@@ -8,7 +8,7 @@ const invalidRequestReply = (request, reply, errors) => reply.status(400).json({
 });
 module.exports = (app) => {
   app.post('/family', validators.registerValidator(), async (request, reply) => {
-		/*  #swagger.parameters['post family object'] = {
+    /*  #swagger.parameters['post family object'] = {
             in: 'body',
             description: "New family values",
             schema: {
@@ -25,15 +25,15 @@ module.exports = (app) => {
                 "$per_capita_income": "1200"
             }
     } */
-		const errors = validators.validateRequest(request);
-		if (errors.length > 0) {
-			return invalidRequestReply(request, reply, errors);
-		}
+    const errors = validators.validateRequest(request);
+    if (errors.length > 0) {
+      return invalidRequestReply(request, reply, errors);
+    }
 
-		const response = await controller.post(request, reply);
-		console.log(response);
-		return reply.json(response);
-	});
+    const response = await controller.post(request, reply);
+    console.log(response);
+    return reply.json(response);
+  });
 
   app.get('/family', async (request, reply) => {
     const response = await controller.get(request, reply);
@@ -54,7 +54,7 @@ module.exports = (app) => {
             description: "New family values",
             schema: {
                "$name": "new family",
-                "$birth_date": "yy-yy-yyyy",
+                "$birth_date": "2021-04-10",
                 "$email": "aaa@aaa.com",
                 "$phone": "(19) 99999-9999",
                 "$address": "123 Main",
@@ -79,7 +79,7 @@ module.exports = (app) => {
         schema: {
            "$name": "new family",
                 "$name": "new family",
-                "$birth_date": "yy-yy-yyyy",
+                "$birth_date": "2021-04-10",
                 "$email": "aaa@aaa.com",
                 "$phone": "(19) 99999-9999",
                 "$address": "123 Main",

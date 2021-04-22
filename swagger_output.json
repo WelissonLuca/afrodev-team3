@@ -288,7 +288,7 @@
                 },
                 "birth_date": {
                   "type": "string",
-                  "example": "yy-yy-yyyy"
+                  "example": "2021-04-10"
                 },
                 "email": {
                   "type": "string",
@@ -360,7 +360,7 @@
                 },
                 "birth_date": {
                   "type": "string",
-                  "example": "yy-yy-yyyy"
+                  "example": "2021-04-10"
                 },
                 "email": {
                   "type": "string",
