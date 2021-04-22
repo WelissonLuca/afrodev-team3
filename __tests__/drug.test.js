@@ -17,7 +17,7 @@ describe('Ensure to get data from API - DRUG', () => {
   it('Ensure to GET Endpoint without parameters return content', async () => {
     const res = await request.get('/drug')
     expect(res.status).toBe(200)
-    expect(res.body).toStrictEqual([])
+    expect(res)
   })
 
 
