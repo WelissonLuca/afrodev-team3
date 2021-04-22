@@ -29,9 +29,6 @@ exports.findAll = async (drug) => {
 exports.findById = async (id) => {
   try {
     const drug = await Drug.findByPk(id);
-    if (!drug) {
-      return { statusCode: 404, message: `Drug not found with id ${id}` };
-    }
     return drug;
   } catch (err) {
     console.log(err);
@@ -43,12 +40,11 @@ exports.findById = async (id) => {
 
 exports.patch = async (id, newDrug) => {
   try {
-    const drug = await Drug.findByPk(id);
-    if (!drug) {
-      return { statusCode: 404, message: `Drug not found with id ${id}` };
-    }
-    await Drug.update(newDrug, { where: { id } });
-    return await Drug.findByPk(id);
+    return await Drug.update(newDrug, {
+      where: {
+        id,
+      },
+    });
   } catch (err) {
     console.log(err);
     const error = new Error('An error ocurred while updating drug');
@@ -59,10 +55,7 @@ exports.patch = async (id, newDrug) => {
 
 exports.update = async (id, newDrug) => {
   try {
-    const drug = await Drug.findByPk(id);
-    if (!drug) {
-      return { statusCode: 404, message: `Drug not found with id ${id}` };
-    }
+    const drug = await Drug.findOne({ id });
     drug.set(newDrug);
     drug.save();
     return drug;
@@ -76,12 +69,12 @@ exports.update = async (id, newDrug) => {
 
 exports.delete = async (id) => {
   try {
-    const drug = await Drug.findByPk(id);
-    if (!drug) {
-      return { statusCode: 404, message: `Drug not found with id ${id}` };
-    }
-    drug.destroy();
-    drug.save();
+    const drug = await Drug.destroy({
+      where: {
+        id,
+      },
+    });
+    return drug;
   } catch (err) {
     console.log(err);
     const error = new Error('An error ocurred while deleting drug');
