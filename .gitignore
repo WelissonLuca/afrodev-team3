@@ -4,4 +4,4 @@ coverage/*
 .prettierrc
 .env
 .env.dev
-.env.test
+
