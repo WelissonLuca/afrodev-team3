@@ -6,8 +6,8 @@ exports.register = async (supply) => {
     const newSupply = await Supply.create(supply);
     return newSupply;
   } catch (err) {
-    console.log(err);
-    const error = new Error('An error ocurred while creating supply');
+    console.error(err);
+    const error = new Error('An error occurred while creating supply');
     error.statusCode = 500;
     throw error;
   }
@@ -20,8 +20,8 @@ exports.findAll = async (supply) => {
     });
     return supplies;
   } catch (err) {
-    console.log(err);
-    const error = new Error('An error ocurred while finding supplies');
+    console.error(err);
+    const error = new Error('An error occurred while finding supplies');
     error.statusCode = 500;
     throw error;
   }
@@ -34,10 +34,16 @@ exports.findByName = async (name) => {
         [Op.like]: Sequelize.fn('lower', `%${name}%`),
       }),
     });
+    if (!supplies.length) {
+      return {
+        statusCode: 404,
+        message: `Supplies not found with name like ${name}`,
+      };
+    }
     return supplies;
   } catch (err) {
-    console.log(err);
-    const error = new Error('An error ocurred while finding supplies by name');
+    console.error(err);
+    const error = new Error('An error occurred while finding supplies by name');
     error.statusCode = 500;
     throw error;
   }
@@ -46,10 +52,13 @@ exports.findByName = async (name) => {
 exports.findById = async (id) => {
   try {
     const supply = await Supply.findByPk(id);
+    if (!supply) {
+      return { statusCode: 404, message: `Supply not found with id ${id}` };
+    }
     return supply;
   } catch (err) {
-    console.log(err);
-    const error = new Error('An error ocurred while finding supply by id');
+    console.error(err);
+    const error = new Error('An error occurred while finding supply by id');
     error.statusCode = 500;
     throw error;
   }
@@ -57,14 +66,15 @@ exports.findById = async (id) => {
 
 exports.patch = async (id, newSupply) => {
   try {
-    return await Supply.update(newSupply, {
-      where: {
-        id,
-      },
-    });
+    const supply = await Supply.findByPk(id);
+    if (!supply) {
+      return { statusCode: 404, message: `Supply not found with id ${id}` };
+    }
+    await Supply.update(newSupply, { where: { id } });
+    return await Supply.findByPk(id);
   } catch (err) {
-    console.log(err);
-    const error = new Error('An error ocurred while updating supply');
+    console.error(err);
+    const error = new Error('An error occurred while updating supply');
     error.statusCode = 500;
     throw error;
   }
@@ -72,13 +82,16 @@ exports.patch = async (id, newSupply) => {
 
 exports.update = async (id, newSupply) => {
   try {
-    const supply = await Supply.findOne({ id });
+    const supply = await Supply.findByPk(id);
+    if (!supply) {
+      return { statusCode: 404, message: `Supply not found with id ${id}` };
+    }
     supply.set(newSupply);
     supply.save();
     return supply;
   } catch (err) {
-    console.log(err);
-    const error = new Error('An error ocurred while updating supply');
+    console.error(err);
+    const error = new Error('An error occurred while updating supply');
     error.statusCode = 500;
     throw error;
   }
@@ -86,15 +99,16 @@ exports.update = async (id, newSupply) => {
 
 exports.delete = async (id) => {
   try {
-    const supply = await Supply.destroy({
-      where: {
-        id,
-      },
-    });
+    const supply = await Supply.findByPk(id);
+    if (!supply) {
+      return { statusCode: 404, message: `Supply not found with id ${id}` };
+    }
+    supply.destroy();
+    supply.save();
     return supply;
   } catch (err) {
-    console.log(err);
-    const error = new Error('An error ocurred while deleting supply');
+    console.error(err);
+    const error = new Error('An error occurred while deleting supply');
     error.statusCode = 500;
     throw error;
   }

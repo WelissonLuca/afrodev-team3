@@ -1,12 +1,11 @@
 const controller = require('../../controllers/ong');
 const validators = require('../validators/ong');
 
-const invalidRequestReply = (request, reply, errors) =>
-  reply.status(400).json({
-    method: request.method,
-    status: reply.statusCode,
-    error: errors,
-  });
+const invalidRequestReply = (request, reply, errors) => reply.status(400).json({
+  method: request.method,
+  status: reply.statusCode,
+  error: errors,
+});
 
 module.exports = (app) => {
   app.post('/ong', validators.registerValidator(), async (request, reply) => {

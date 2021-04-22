@@ -1,12 +1,11 @@
 const controller = require('../../controllers/supply');
 const validators = require('../validators/supply');
 
-const invalidRequestReply = (request, reply, errors) =>
-  reply.status(400).json({
-    method: request.method,
-    status: reply.statusCode,
-    error: errors,
-  });
+const invalidRequestReply = (request, reply, errors) => reply.status(400).json({
+  method: request.method,
+  status: reply.statusCode,
+  error: errors,
+});
 
 module.exports = (app) => {
   app.post(
@@ -27,11 +26,11 @@ module.exports = (app) => {
             }
     } */
       const errors = validators.validateRequest(request);
-      if (errors.length > 0) {
+      if (errors.length) {
         return invalidRequestReply(request, reply, errors);
       }
       const response = await controller.post(request, reply);
-      return reply.status(200).json(response);
+      return reply.status(201).json(response);
     },
   );
 
@@ -48,6 +47,9 @@ module.exports = (app) => {
       request,
       reply,
     );
+    if (response.statusCode) {
+      return invalidRequestReply(request, reply, response);
+    }
     return reply.status(200).json(response);
   });
 
@@ -58,6 +60,9 @@ module.exports = (app) => {
       request,
       reply,
     );
+    if (response.statusCode) {
+      return invalidRequestReply(request, reply, response);
+    }
     return reply.status(200).json(response);
   });
 
@@ -79,11 +84,14 @@ module.exports = (app) => {
             }
     } */
       const errors = validators.validateRequest(request);
-      if (errors.length > 0) {
+      if (errors.length) {
         return invalidRequestReply(request, reply, errors);
       }
       const response = await controller.put(request.params.id, request, reply);
-      return reply.status(200).json(response);
+      if (response.statusCode) {
+        return invalidRequestReply(request, reply, response);
+      }
+      return reply.status(202).json(response);
     },
   );
 
@@ -105,7 +113,7 @@ module.exports = (app) => {
             }
     } */
       const errors = validators.validateRequest(request);
-      if (errors.length > 0) {
+      if (errors.length) {
         return invalidRequestReply(request, reply, errors);
       }
       const response = await controller.patch(
@@ -113,13 +121,19 @@ module.exports = (app) => {
         request,
         reply,
       );
-      return reply.status(200).json(response);
+      if (response.statusCode) {
+        return invalidRequestReply(request, reply, response);
+      }
+      return reply.status(202).json(response);
     },
   );
 
   app.delete('/supply/:id', async (request, reply) => {
     //  #swagger.tags = ['Supplies']
     const response = await controller.delete(request.params.id, request, reply);
+    if (response.statusCode) {
+      return invalidRequestReply(request, reply, response);
+    }
     return reply.status(204).send();
   });
 };
