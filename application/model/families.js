@@ -16,8 +16,8 @@ class Families extends Model {
           type: DataTypes.STRING,
           allowNull: false,
         },
-        age: {
-          type: DataTypes.STRING,
+        birth_date: {
+          type: DataTypes.DATE,
           allowNull: false,
         },
         email: {

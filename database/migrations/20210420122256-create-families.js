@@ -10,8 +10,8 @@ module.exports = {
       type: Sequelize.STRING,
       allowNull: false,
     },
-    age: {
-      type: Sequelize.STRING,
+    birth_date: {
+      type: Sequelize.DATE,
       allowNull: false,
     },
     email: {

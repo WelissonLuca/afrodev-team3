@@ -7,7 +7,7 @@ exports.validateRequest = (req) => {
 
 exports.registerValidator = () => [
   check('name').notEmpty().withMessage('name is required'),
-  check('age').notEmpty().withMessage('age is required'),
+  check('birth_date').notEmpty().withMessage('birth date is required'),
   check('email')
     .notEmpty()
     .withMessage('email is required')
