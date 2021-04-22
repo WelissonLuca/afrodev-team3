@@ -170,7 +170,9 @@
     },
     "/family": {
       "post": {
-        "tags": [],
+        "tags": [
+          "Families"
+        ],
         "description": "",
         "parameters": [
           {
@@ -233,6 +235,9 @@
                 "cpf",
                 "address",
                 "civil_status",
+                "gender",
+                "number_members",
+                "children",
                 "per_capita_income"
               ]
             }
@@ -245,7 +250,9 @@
         }
       },
       "get": {
-        "tags": [],
+        "tags": [
+          "Families"
+        ],
         "description": "",
         "parameters": [],
         "responses": {}
@@ -253,7 +260,9 @@
     },
     "/family/{id}": {
       "get": {
-        "tags": [],
+        "tags": [
+          "Families"
+        ],
         "description": "",
         "parameters": [
           {
@@ -266,7 +275,9 @@
         "responses": {}
       },
       "put": {
-        "tags": [],
+        "tags": [
+          "Families"
+        ],
         "description": "",
         "parameters": [
           {
@@ -326,6 +337,8 @@
                 "phone",
                 "address",
                 "civil_status",
+                "number_members",
+                "children",
                 "per_capita_income"
               ]
             }
@@ -338,7 +351,9 @@
         }
       },
       "patch": {
-        "tags": [],
+        "tags": [
+          "Families"
+        ],
         "description": "",
         "parameters": [
           {
@@ -398,6 +413,8 @@
                 "phone",
                 "address",
                 "civil_status",
+                "number_members",
+                "children",
                 "per_capita_income"
               ]
             }
@@ -406,7 +423,9 @@
         "responses": {}
       },
       "delete": {
-        "tags": [],
+        "tags": [
+          "Families"
+        ],
         "description": "",
         "parameters": [
           {

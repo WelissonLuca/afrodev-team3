@@ -8,7 +8,9 @@ const invalidRequestReply = (request, reply, errors) => reply.status(400).json({
 });
 module.exports = (app) => {
   app.post('/family', validators.registerValidator(), async (request, reply) => {
-    /*  #swagger.parameters['post family object'] = {
+    /*
+    #swagger.tags = ['Families'],
+    #swagger.parameters['post family object'] = {
             in: 'body',
             description: "New family values",
             schema: {
@@ -19,9 +21,9 @@ module.exports = (app) => {
                 "$cpf": "000.000.000-00",
                 "$address": "123 Main",
                 "$civil_status": "casado",
-                "gender": "masculino",
-                "number_members": 20,
-                "children": 4,
+                "$gender": "masculino",
+                "$number_members": 20,
+                "$children": 4,
                 "$per_capita_income": "1200"
             }
     } */
@@ -36,10 +38,12 @@ module.exports = (app) => {
   });
 
   app.get('/family', async (request, reply) => {
+    /* #swagger.tags = ['Families'] */
     const response = await controller.get(request, reply);
     return reply.json(response);
   });
   app.get('/family/:id', async (request, reply) => {
+    /* #swagger.tags = ['Families'] */
     const response = await controller.getById(
       request.params.id,
       request,
@@ -49,7 +53,9 @@ module.exports = (app) => {
   });
 
   app.put('/family/:id', validators.updateValidator(), async (request, reply) => {
-    /*  #swagger.parameters['put family object'] = {
+    /*
+     #swagger.tags = ['Families'],
+    #swagger.parameters['put family object'] = {
             in: 'body',
             description: "New family values",
             schema: {
@@ -59,8 +65,8 @@ module.exports = (app) => {
                 "$phone": "(19) 99999-9999",
                 "$address": "123 Main",
                 "$civil_status": "casado",
-                "number_members": 20,
-                "children": 4,
+                "$number_members": 20,
+                "$children": 4,
                 "$per_capita_income": "1200"
             }
     } */
@@ -73,7 +79,9 @@ module.exports = (app) => {
   });
 
   app.patch('/family/:id', async (request, reply) => {
-    /* #swagger.parameters['patch family object'] = {
+    /*
+     #swagger.tags = ['Families'],
+    #swagger.parameters['patch family object'] = {
         in: 'body',
         description: "New family values",
         schema: {
@@ -84,8 +92,8 @@ module.exports = (app) => {
                 "$phone": "(19) 99999-9999",
                 "$address": "123 Main",
                 "$civil_status": "casado",
-                "number_members": 20,
-                "children": 4,
+                "$number_members": 20,
+                "$children": 4,
                 "$per_capita_income": "1200"
         }
       } */
@@ -95,6 +103,7 @@ module.exports = (app) => {
   });
 
   app.delete('/family/:id', async (request, reply) => {
+    /* #swagger.tags = ['Families'] */
     const response = await controller.delete(request.params.id, request, reply);
     return reply.json(response);
   });

@@ -1,4 +1,5 @@
 const { check, validationResult } = require('express-validator');
+const { isCPF } = require('brazilian-values');
 
 exports.validateRequest = (req) => {
   const result = validationResult(req);
@@ -20,7 +21,8 @@ exports.registerValidator = () => [
   check('cpf')
     .notEmpty()
     .withMessage('cpf is required')
-    .custom((val) => /^\d{3}.\d{3}.\d{3}-\d{2}$/g.test(val)),
+    .custom((cpf) => isCPF(cpf))
+    .withMessage('cpf is not valid'),
   check('address')
     .notEmpty()
     .withMessage('address is required'),
