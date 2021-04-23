@@ -2,7 +2,6 @@ const ongService = require('../../application/services/ong');
 
 exports.post = async (request) => {
   const result = await ongService.register(request.body);
-  console.log(result);
   return result;
 };
 

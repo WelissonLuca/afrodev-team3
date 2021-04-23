@@ -4,12 +4,10 @@ const Ong = require('../application/model/ong');
 const Family = require('../application/model/families');
 const Supply = require('../application/model/supply');
 
-
 const connection = new Sequelize(dbConfiguration);
 
 Ong.init(connection);
 Family.init(connection);
 Supply.init(connection);
-
 
 module.exports = connection;

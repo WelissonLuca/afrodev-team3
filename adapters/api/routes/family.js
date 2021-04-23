@@ -28,19 +28,19 @@ module.exports = (app) => {
             }
     } */
     const errors = validators.validateRequest(request);
-    if (errors.length > 0) {
+    if (errors.length) {
       return invalidRequestReply(request, reply, errors);
     }
 
     const response = await controller.post(request, reply);
-    console.log(response);
-    return reply.json(response);
+
+    return reply.status(201).json(response);
   });
 
   app.get('/family', async (request, reply) => {
     /* #swagger.tags = ['Families'] */
     const response = await controller.get(request, reply);
-    return reply.json(response);
+    return reply.status(200).json(response);
   });
   app.get('/family/:id', async (request, reply) => {
     /* #swagger.tags = ['Families'] */
@@ -49,7 +49,10 @@ module.exports = (app) => {
       request,
       reply,
     );
-    return reply.json(response);
+    if (response.statusCode) {
+      return invalidRequestReply(request, reply, response);
+    }
+    return reply.status(200).json(response);
   });
 
   app.put('/family/:id', validators.updateValidator(), async (request, reply) => {
@@ -70,11 +73,11 @@ module.exports = (app) => {
             }
     } */
     const errors = validators.validateRequest(request);
-    if (errors.length > 0) {
+    if (errors.length) {
       return invalidRequestReply(request, reply, errors);
     }
     const response = await controller.put(request.params.id, request, reply);
-    return reply.json(response);
+    return reply.status(202).json(response);
   });
 
   app.patch('/family/:id', validators.patchValidator(), async (request, reply) => {
@@ -96,8 +99,10 @@ module.exports = (app) => {
         }
       } */
     const response = await controller.patch(request.params.id, request, reply);
-    console.log(response);
-    return reply.json({
+    if (response.statusCode) {
+      return invalidRequestReply(request, reply, response);
+    }
+    return reply.status(202).json({
       response,
       message: 'family update successfully',
     });
@@ -106,8 +111,10 @@ module.exports = (app) => {
   app.delete('/family/:id', async (request, reply) => {
     /* #swagger.tags = ['Families'] */
     const response = await controller.delete(request.params.id, request, reply);
-    return reply.json({
-      response,
+    if (response.statusCode) {
+      return invalidRequestReply(request, reply, response);
+    }
+    return reply.status(204).json({
       message: 'family deleted successfully',
     });
   });

@@ -28,11 +28,8 @@ exports.findAll = async (family) => {
 
 exports.findById = async (id) => {
   try {
-    const families = await Families.findAll({
-      where: {
-        id,
-      },
-    });
+    const families = await Families.findByPk(id);
+    if (!families) return { statusCode: 404, message: `Family not found with id ${id}` };
     return families;
   } catch (err) {
     console.log(err);
@@ -44,7 +41,9 @@ exports.findById = async (id) => {
 
 exports.update = async (id, newFamily) => {
   try {
-    const family = await Families.findOne({ id });
+    const family = await Families.findByPk(id);
+    if (!family) return { statusCode: 404, message: `Family not found with id ${id}` };
+
     family.set(newFamily);
     family.save();
     return family;
@@ -58,11 +57,10 @@ exports.update = async (id, newFamily) => {
 
 exports.patch = async (id, newFamily) => {
   try {
-    return await Families.update(newFamily, {
-      where: {
-        id,
-      },
-    });
+    const family = await Families.findByPk(id);
+    if (!family) return { statusCode: 404, message: `Family not found with id ${id}` };
+    await Families.update(newFamily, { where: { id } });
+    return await Families.findByPk(id);
   } catch (err) {
     console.log(err);
     const error = new Error('An error ocurred while updating family');
@@ -73,11 +71,11 @@ exports.patch = async (id, newFamily) => {
 
 exports.delete = async (id) => {
   try {
-    const family = await Families.destroy({
-      where: {
-        id,
-      },
-    });
+    const family = await Families.findByPk(id);
+    if (!family) return { statusCode: 404, message: `Family not found with id ${id}` };
+    family.destroy();
+    family.save();
+
     return family;
   } catch (err) {
     console.log(err);
