@@ -4,10 +4,52 @@ const app = require('../index');
 const request = supertest(app);
 const sequelize = require('../config/connection');
 
+describe('Getting data from API - FAMILY without data', () => {
+  beforeAll(async () => {
+    await sequelize.authenticate();
+  });
+
+  it('Calling GET endpoint without parameters', async () => {
+    await request
+      .get('/family')
+      .expect(200)
+      .then((res) => expect(Array.isArray(res.body)).toBeTruthy());
+  });
+
+  it('Calling GET by id', async () => {
+    await request
+      .get('/family/1')
+      .expect(200)
+      .then((res) => expect(Array.isArray(res.body)).toBeTruthy());
+  });
+});
+
 
 
  
 
+
+describe('Setting data from API - Family ', () => {
+  it('Calling POST endpoint', async () => {
+    await request
+      .post('/family')
+      .send({
+        name: 'new family',
+        birth_date: '2021-04-10',
+        email: 'aaa@aaa.com',
+        phone: '(19) 99999-9999',
+        cpf: '469.610.370-62',
+        address: '123 Main',
+        civil_status: 'casado',
+        gender: 'masculino',
+        number_members: 20,
+        children: 4,
+        per_capita_income: 200.0,
+      })
+      .expect(200)
+      .then((res) => expect(res.body.created_at).toBeTruthy());
+  });
+});
 
 
 describe('Updating data in API - FAMILY', () => {
@@ -15,68 +57,31 @@ describe('Updating data in API - FAMILY', () => {
     await request
       .put('/family/1')
       .send({
-        name: 'Arroz TIPO II',
-        description: 'Arroz Branco TIPO II',
-        category: 'Alimentos',
-        type: 'KG',
-        price: 5.5,
-        quantity: 100,
+        name: 'My family',      
+        email: 'bb@bbb.com',
+        phone: '(19) 99999-9999',
+        address: '123 Main',
+        civil_status: 'casado',
+        gender: 'masculino',
+        number_members: 20,
+        children: 4,
+        per_capita_income: 200.0,
       })
-      .expect(202)
-      .then((res) => expect(res.body.price).toBe(5.5));
+      .expect(200)
+      .then((res) => expect(res.body.updated_at).toBeTruthy());    
   });
 
-  it('Calling PATCH endpoint', async () => {
-    await request
-      .patch('/supply/1')
-      .send({
-        price: 6.99,
-      })
-      .expect(202)
-      .then((res) => expect(res.body.price).toBe('6.990'));
-  });
 });
 
-describe('Getting data from API - SUPPLY with data', () => {
-  it('Calling GET endpoint without parameters', async () => {
-    await request
-      .get('/supply')
-      .expect(200)
-      .then((res) => {
-        expect(Array.isArray(res.body)).toBeTruthy();
-        expect(res.body).toHaveLength(1);
-      });
-  });
-
-  it('Calling GET endpoint by id', async () => {
-    await request
-      .get('/supply/1')
-      .expect(200)
-      .then((res) => {
-        expect(res.body).toHaveProperty('id');
-        expect(res.body).toHaveProperty('created_at');
-      });
-  });
-
-  it('Calling GET endpoint by name', async () => {
-    await request
-      .get('/supply/name/roz')
-      .expect(200)
-      .then((res) => {
-        expect(Array.isArray(res.body)).toBeTruthy();
-        expect(res.body).toHaveLength(1);
-      });
-  });
+it('Calling PATCH endpoint', async () => {
+  await request
+    .patch('/family/1')
+    .send({
+      name: "John Doe",
+    })
+    .expect(200)
+    .then((res) => expect(res.body.name).toBe(res.body.name));
 });
 
-describe('Deleting data in API - SUPPLY', () => {
-  it('Calling DELETE endpoint by id', async () => {
-    await request.delete('/supply/1').expect(204);
-  });
 
-  afterAll(async (done) => {
-    await sequelize.truncate({ force: true });
-    await sequelize.close();
-    done();
-  });
-});
+
