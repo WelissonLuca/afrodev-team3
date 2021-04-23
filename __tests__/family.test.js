@@ -45,3 +45,16 @@ describe('Setting data from API - Family ', () => {
       .then((res) => expect(res.body.created_at).toBeTruthy());
   });
 });
+
+describe('Delete data from API - Family ', () => {
+  it('Calling DELETE endpoint by id', async () => {
+    await request
+      .delete('/family/1')
+      .expect(200);
+  });
+  afterAll(async (done) => {
+    await sequelize.truncate({ force: true });
+    await sequelize.close();
+    done();
+  });
+});
