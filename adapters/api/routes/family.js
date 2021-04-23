@@ -28,12 +28,12 @@ module.exports = (app) => {
             }
     } */
     const errors = validators.validateRequest(request);
-    if (errors.length > 0) {
+    if (errors.length) {
       return invalidRequestReply(request, reply, errors);
     }
 
     const response = await controller.post(request, reply);
-    console.log(response);
+    
     return reply.json(response);
   });
 
