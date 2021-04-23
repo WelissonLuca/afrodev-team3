@@ -1,4 +1,10 @@
 node_modules/*
 coverage/*
+
+.prettierrc
 .env
 .env.test
+.env.dev
+ 
+
+
