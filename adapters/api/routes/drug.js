@@ -10,7 +10,8 @@ const invalidRequestReply = (request, reply, errors) =>
 
 module.exports = (app) => {
   app.post('/drug', validators.registerValidator(), async (request, reply) => {
-    /*#swagger.parameters['post drug object'] = {
+    /*#swagger.tags = ['Drugs']
+    #swagger.parameters['post drug object'] = {
         in: 'body',
         description: "New drug values",
         schema: {
@@ -21,7 +22,7 @@ module.exports = (app) => {
         }
       }*/
     const errors = validators.validateRequest(request);
-    if (errors.lenght > 0) {
+    if (errors.length) {
       return invalidRequestReply(request, reply, errors);
     }
     const response = await controller.post(request, reply);
@@ -43,7 +44,8 @@ module.exports = (app) => {
   });
 
   app.put('/drug/:id', validators.updateValidator(), async (request, reply) => {
-    /*#swagger.parameters['put drug object'] = {
+    /*#swagger.tags= ['Drugs']
+    #swagger.parameters['put drug object'] = {
         in: 'body',
         description: "New drug values",
         schema: {
@@ -54,7 +56,7 @@ module.exports = (app) => {
         }
       }*/
     const errors = validators.validateRequest(request);
-    if (errors.lenght > 0) {
+    if (errors.length) {
       return invalidRequestReply(request, reply, errors);
     }
     const response = await controller.put(
@@ -66,7 +68,8 @@ module.exports = (app) => {
   });
 
   app.patch('/drug/:id', validators.patchValidator(), async (request, reply) => {
-    /*#swagger.parameters['patch drug object'] = {
+    /*#swagger.tags = ['Drugs']
+      #swagger.parameters['patch drug object'] = {
         in: 'body',
         description: "New drug values",
         schema: {
@@ -77,7 +80,7 @@ module.exports = (app) => {
         }
       }*/
     const errors = validators.validateRequest(request);
-    if (errors.lenght > 0) {
+    if (errors.length) {
       return invalidRequestReply(request, reply, errors);
     }
     const response = await controller.patch(
