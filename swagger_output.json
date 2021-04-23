@@ -173,13 +173,18 @@
           }
         ],
         "responses": {
+          "200": {
+            "description": "OK"
+          },
           "400": {
             "description": "Bad Request"
           }
         }
       },
       "delete": {
-        "tags": [],
+        "tags": [
+          "Ongs"
+        ],
         "description": "",
         "parameters": [
           {
@@ -189,7 +194,11 @@
             "type": "string"
           }
         ],
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
       }
     },
     "/family": {
@@ -224,7 +233,7 @@
                 },
                 "cpf": {
                   "type": "string",
-                  "example": "000.000.000-00"
+                  "example": "469.610.370-62"
                 },
                 "address": {
                   "type": "string",
@@ -369,17 +378,86 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
-          },
           "400": {
             "description": "Bad Request"
           }
         }
       },
+      "patch": {
+        "tags": [
+          "Families"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "patch family object",
+            "in": "body",
+            "description": "New family values",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "new family"
+                },
+                "birth_date": {
+                  "type": "string",
+                  "example": "2021-04-10"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "aaa@aaa.com"
+                },
+                "phone": {
+                  "type": "string",
+                  "example": "(19) 99999-9999"
+                },
+                "address": {
+                  "type": "string",
+                  "example": "123 Main"
+                },
+                "civil_status": {
+                  "type": "string",
+                  "example": "casado"
+                },
+                "number_members": {
+                  "type": "number",
+                  "example": 20
+                },
+                "children": {
+                  "type": "number",
+                  "example": 4
+                },
+                "per_capita_income": {
+                  "type": "string",
+                  "example": "1200"
+                }
+              },
+              "required": [
+                "name",
+                "birth_date",
+                "email",
+                "phone",
+                "address",
+                "civil_status",
+                "number_members",
+                "children",
+                "per_capita_income"
+              ]
+            }
+          }
+        ],
+        "responses": {}
+      },
       "delete": {
         "tags": [
-          "Ongs"
+          "Families"
         ],
         "description": "",
         "parameters": [
@@ -390,11 +468,7 @@
             "type": "string"
           }
         ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
+        "responses": {}
       }
     },
     "/supply": {
@@ -620,83 +694,9 @@
           }
         }
       },
-      "patch": {
-        "tags": [
-          "Families"
-        ],
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "patch family object",
-            "in": "body",
-            "description": "New family values",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "type": "string",
-                  "example": "new family"
-                },
-                "birth_date": {
-                  "type": "string",
-                  "example": "2021-04-10"
-                },
-                "email": {
-                  "type": "string",
-                  "example": "aaa@aaa.com"
-                },
-                "phone": {
-                  "type": "string",
-                  "example": "(19) 99999-9999"
-                },
-                "address": {
-                  "type": "string",
-                  "example": "123 Main"
-                },
-                "civil_status": {
-                  "type": "string",
-                  "example": "casado"
-                },
-                "number_members": {
-                  "type": "number",
-                  "example": 20
-                },
-                "children": {
-                  "type": "number",
-                  "example": 4
-                },
-                "per_capita_income": {
-                  "type": "string",
-                  "example": "1200"
-                }
-              },
-              "required": [
-                "name",
-                "birth_date",
-                "email",
-                "phone",
-                "address",
-                "civil_status",
-                "number_members",
-                "children",
-                "per_capita_income"
-              ]
-            }
-          }
-        ],
-        "responses": {}
-      },
       "delete": {
         "tags": [
-          "Families",
           "Supplies"
-
         ],
         "description": "",
         "parameters": [
