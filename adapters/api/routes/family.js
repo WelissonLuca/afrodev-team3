@@ -18,7 +18,7 @@ module.exports = (app) => {
                 "$birth_date": "2021-04-10",
                 "$email": "aaa@aaa.com",
                 "$phone": "(19) 99999-9999",
-                "$cpf": "000.000.000-00",
+                "$cpf": "469.610.370-62",
                 "$address": "123 Main",
                 "$civil_status": "casado",
                 "$gender": "masculino",
