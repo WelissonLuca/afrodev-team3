@@ -9,6 +9,7 @@ const config = {
   dialect: process.env.MYSQL_DIALECT || 'mysql',
   define: {
     timestamps: true,
+    paranoid: true,
   },
 };
 
