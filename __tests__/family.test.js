@@ -24,11 +24,6 @@ describe('Getting data from API - FAMILY without data', () => {
   });
 });
 
-
-
- 
-
-
 describe('Setting data from API - Family ', () => {
   it('Calling POST endpoint', async () => {
     await request
@@ -51,13 +46,12 @@ describe('Setting data from API - Family ', () => {
   });
 });
 
-
 describe('Updating data in API - FAMILY', () => {
   it('Calling PUT endpoint', async () => {
     await request
       .put('/family/1')
       .send({
-        name: 'My family',      
+        name: 'My family',
         email: 'bb@bbb.com',
         phone: '(19) 99999-9999',
         address: '123 Main',
@@ -68,20 +62,29 @@ describe('Updating data in API - FAMILY', () => {
         per_capita_income: 200.0,
       })
       .expect(200)
-      .then((res) => expect(res.body.updated_at).toBeTruthy());    
+      .then((res) => expect(res.body.updated_at).toBeTruthy());
   });
-
 });
 
 it('Calling PATCH endpoint', async () => {
   await request
     .patch('/family/1')
     .send({
-      name: "John Doe",
+      name: 'John Doe',
     })
     .expect(200)
     .then((res) => expect(res.body.name).toBe(res.body.name));
 });
 
-
-
+describe('Delete data from API - Family ', () => {
+  it('Calling DELETE endpoint by id', async () => {
+    await request
+      .delete('/family/1')
+      .expect(200);
+  });
+  afterAll(async (done) => {
+    await sequelize.truncate({ force: true });
+    await sequelize.close();
+    done();
+  });
+});
