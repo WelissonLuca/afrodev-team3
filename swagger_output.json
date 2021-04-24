@@ -493,6 +493,330 @@
           }
         }
       }
+    },
+    "/expense": {
+      "post": {
+        "tags": [
+          "Expenses"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "post expense object",
+            "in": "body",
+            "description": "New expense values",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "description": {
+                  "type": "string",
+                  "example": "Purchase of 50kg of White Rice"
+                },
+                "value": {
+                  "type": "number",
+                  "example": 225
+                },
+                "category": {
+                  "type": "string",
+                  "example": "purchase of aliments"
+                },
+                "type": {
+                  "type": "string",
+                  "example": "purchase"
+                },
+                "date": {
+                  "type": "string",
+                  "example": "2021-04-23"
+                },
+                "status": {
+                  "type": "string",
+                  "example": "released"
+                }
+              },
+              "required": [
+                "description",
+                "value",
+                "category",
+                "type",
+                "date",
+                "status"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Expenses"
+        ],
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/expense/{id}": {
+      "get": {
+        "tags": [
+          "Expenses"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "expense ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Expenses"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "expense ID"
+          },
+          {
+            "name": "put expense object",
+            "in": "body",
+            "description": "New expense values",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "description": {
+                  "type": "string",
+                  "example": "Purchase of 50kg of White Rice"
+                },
+                "value": {
+                  "type": "number",
+                  "example": 230
+                },
+                "category": {
+                  "type": "string",
+                  "example": "purchase of aliments"
+                },
+                "type": {
+                  "type": "string",
+                  "example": "purchase"
+                },
+                "date": {
+                  "type": "string",
+                  "example": "2021-04-24"
+                },
+                "status": {
+                  "type": "string",
+                  "example": "approved"
+                }
+              },
+              "required": [
+                "description",
+                "value",
+                "category",
+                "type",
+                "date",
+                "status"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Accepted"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Expenses"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "expense ID"
+          },
+          {
+            "name": "patch expense object",
+            "in": "body",
+            "description": "New expense values",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "description": {
+                  "type": "string",
+                  "example": "Purchase of 500kg of White Rice"
+                },
+                "value": {
+                  "type": "number",
+                  "example": 2300
+                },
+                "category": {
+                  "type": "string",
+                  "example": "purchase of aliments"
+                },
+                "type": {
+                  "type": "string",
+                  "example": "purchase"
+                },
+                "date": {
+                  "type": "string",
+                  "example": "2021-04-25"
+                },
+                "status": {
+                  "type": "string",
+                  "example": "rejected"
+                }
+              },
+              "required": [
+                "description",
+                "value",
+                "category",
+                "type",
+                "date",
+                "status"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Accepted"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Expenses"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/expense/category/{category}": {
+      "get": {
+        "tags": [
+          "Expenses"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "category",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Expense Category"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/expense/type/{type}": {
+      "get": {
+        "tags": [
+          "Expenses"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "type",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Expense Type",
+            "enum": [
+              "purchase",
+              "bill",
+              "salary",
+              "transport",
+              "maintenance"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
     }
   },
   "definitions": {}
