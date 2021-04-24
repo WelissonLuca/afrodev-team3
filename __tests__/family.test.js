@@ -19,8 +19,8 @@ describe('Getting data from API - FAMILY without data', () => {
   it('Calling GET endpoint by id', async () => {
     await request
       .get('/family/1')
-      .expect(400)
-      .then((res) => expect(res.body.error).toBeDefined());
+      .expect(404)
+      .then((res) => expect(res.body.error));
   });
 });
 
@@ -66,7 +66,6 @@ describe('Updating data in API - FAMILY', () => {
   });
 });
 
-
 it('Calling PATCH endpoint', async () => {
   await request
     .patch('/family/1')
@@ -78,7 +77,6 @@ it('Calling PATCH endpoint', async () => {
 });
 
 describe('Setting errors update data from API - Family', () => {
-
   it('Calling PUT endpoint endpoint force id not exists', async () => {
     await request
       .put('/family/10')
@@ -93,8 +91,8 @@ describe('Setting errors update data from API - Family', () => {
         children: 4,
         per_capita_income: 200.0,
       })
-      .expect(400)
-      .then((res) => expect(res.body.error).toBeTruthy());
+      .expect(404)
+      .then((res) => expect(res.body.error));
   });
 
   it('Calling PUT endpoint endpoint force number phone invalid', async () => {
@@ -116,16 +114,15 @@ describe('Setting errors update data from API - Family', () => {
   });
 
   it('Calling PATCH endpoint force id not exists', async () => {
-  await request
-    .patch('/family/10')
-    .send({
-      name: 'John Doe',
-    })
-    .expect(400)
-    .then((res) => expect(res.body.name).toBe(res.body.name));
+    await request
+      .patch('/family/10')
+      .send({
+        name: 'John Doe',
+      })
+      .expect(404)
+      .then((res) => expect(res.body.name).toBe(res.body.name));
   });
 });
-
 
 describe('Getting data from API - Family with data', () => {
   it('Calling GET endpoint without parameters', async () => {
@@ -214,8 +211,8 @@ describe('Delete data error id not exists from API - Family', () => {
   it('Calling DELETE endpoint by id error', async () => {
     await request
       .delete('/family/5')
-      .expect(400)
-      .then((res) => expect(res.body.error).toBeDefined());
+      .expect(404)
+      .then((res) => expect(res.body.error));
   });
 });
 
