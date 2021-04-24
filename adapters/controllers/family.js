@@ -33,3 +33,13 @@ exports.getDeleted = async (request) => {
   const result = await familyService.findAllDeletedAt(request.body);
   return result;
 };
+
+exports.getDeletedById = async (id) => {
+  const result = await familyService.findByIdDeletedAt(id);
+  return result;
+};
+
+exports.getDeletedById = async (id) => {
+  const result = await familyService.findDeletedById(id);
+  return result;
+};

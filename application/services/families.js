@@ -88,7 +88,7 @@ exports.delete = async (id) => {
   }
 };
 
-exports.findAllDeletedAt = async (family) => {
+exports.findAllDeletedAt = async () => {
   try {
     const families = await Families.findAll({
       paranoid: false,
@@ -104,6 +104,29 @@ exports.findAllDeletedAt = async (family) => {
   } catch (err) {
     console.error(err);
     const error = new Error('An error occurred while finding cancelled family');
+    error.statusCode = 500;
+    throw error;
+  }
+};
+
+exports.findDeletedById = async (id) => {
+  try {
+    const families = await Families.findOne(
+      ({
+        paranoid: false,
+        where: {
+          id,
+          deleted_at: {
+            [Op.not]: null,
+          },
+        },
+      }),
+    );
+    if (!families) return { statusCode: 404, message: `Family not found with id ${id}` };
+    return families;
+  } catch (err) {
+    console.error(err);
+    const error = new Error('An error occurred while finding families by id');
     error.statusCode = 500;
     throw error;
   }

@@ -48,7 +48,15 @@ module.exports = (app) => {
     const response = await controller.getDeleted(request, reply);
     return reply.status(200).json(response);
   });
-
+  app.get('/family/cancelleds/:id', async (request, reply) => {
+    /* #swagger.tags = ['Families'] */
+    const response = await controller.getDeletedById(
+      request.params.id,
+      request,
+      reply,
+    );
+    return reply.status(response.statusCode || 200).json(response);
+  });
   app.get('/family/:id', async (request, reply) => {
     /* #swagger.tags = ['Families'] */
     const response = await controller.getById(
