@@ -31,9 +31,9 @@ const start = async () => {
 
     consign().include('adapters/api/routes').into(app);
 
-//    if(process.env.NODE_ENV !== 'test') {
+    if(process.env.NODE_ENV !== 'test') {
       app.listen(3000, () => console.log('listening port 3000'));
-//    }
+    }
   } catch (err) {
     console.log(err);
     process.exit(1);
