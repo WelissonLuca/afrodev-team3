@@ -1,3 +1,5 @@
+const { Op } = require('sequelize');
+
 const Families = require('../model/families');
 
 exports.register = async (family) => {
@@ -81,6 +83,25 @@ exports.delete = async (id) => {
     console.error(err);
     const error = new Error('An error occurred while deleting family');
 
+    error.statusCode = 500;
+    throw error;
+  }
+};
+
+exports.findAllDeletedAt = async (family) => {
+  try {
+    const families = await Families.findAll({
+      where: {
+        family,
+        deleted_at: {
+          [Op.ne]: null,
+        },
+      },
+    });
+    return families;
+  } catch (err) {
+    console.error(err);
+    const error = new Error('An error occurred while finding cancelled family');
     error.statusCode = 500;
     throw error;
   }

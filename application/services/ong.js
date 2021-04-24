@@ -76,6 +76,7 @@ exports.delete = async (id) => {
     const ong = await Ong.destroy({
       where: {
         id,
+        deleted_at: null,
       },
     });
     return ong;

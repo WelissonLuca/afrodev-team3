@@ -42,6 +42,13 @@ module.exports = (app) => {
     const response = await controller.get(request, reply);
     return reply.status(200).json(response);
   });
+
+  app.get('/family/cancelleds', async (request, reply) => {
+    /* #swagger.tags = ['Families'] */
+    const response = await controller.get(request, reply);
+    return reply.status(200).json(response);
+  });
+
   app.get('/family/:id', async (request, reply) => {
     /* #swagger.tags = ['Families'] */
     const response = await controller.getById(

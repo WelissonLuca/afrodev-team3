@@ -28,3 +28,8 @@ exports.delete = async (id) => {
   const result = await familyService.delete(id);
   return result;
 };
+
+exports.get = async (request) => {
+  const result = await familyService.findAllDeletedAt(request.body);
+  return result;
+};
