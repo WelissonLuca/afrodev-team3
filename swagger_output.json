@@ -168,7 +168,30 @@
             "description": "New ong values",
             "schema": {
               "type": "object",
-              "properties": {}
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "new ong"
+                },
+                "description": {
+                  "type": "string",
+                  "example": "ong description"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "aaa@aaa.com"
+                },
+                "phone": {
+                  "type": "string",
+                  "example": "(19) 99999-9999"
+                }
+              },
+              "required": [
+                "name",
+                "description",
+                "email",
+                "phone"
+              ]
             }
           }
         ],
@@ -277,6 +300,9 @@
           }
         ],
         "responses": {
+          "201": {
+            "description": "Created"
+          },
           "400": {
             "description": "Bad Request"
           }
@@ -288,7 +314,11 @@
         ],
         "description": "",
         "parameters": [],
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
       }
     },
     "/family/{id}": {
@@ -458,6 +488,198 @@
       "delete": {
         "tags": [
           "Families"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/drug": {
+      "post": {
+        "tags": [
+          "Drugs"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "post drug object",
+            "in": "body",
+            "description": "New drug values",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "new drug"
+                },
+                "quantity": {
+                  "type": "string",
+                  "example": "999.999"
+                },
+                "category": {
+                  "type": "string",
+                  "example": "drug category"
+                },
+                "description": {
+                  "type": "string",
+                  "example": "drug description"
+                }
+              },
+              "required": [
+                "name",
+                "quantity",
+                "category",
+                "description"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Drugs"
+        ],
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/drug/{id}": {
+      "get": {
+        "tags": [
+          "Drugs"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {}
+      },
+      "put": {
+        "tags": [
+          "Drugs"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "put drug object",
+            "in": "body",
+            "description": "New drug values",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "new drug"
+                },
+                "quantity": {
+                  "type": "string",
+                  "example": "999.999"
+                },
+                "category": {
+                  "type": "string",
+                  "example": "drug category"
+                },
+                "description": {
+                  "type": "string",
+                  "example": "drug description"
+                }
+              },
+              "required": [
+                "name",
+                "quantity",
+                "category",
+                "description"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Drugs"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "patch drug object",
+            "in": "body",
+            "description": "New drug values",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "new drug"
+                },
+                "quantity": {
+                  "type": "string",
+                  "example": "999.999"
+                },
+                "category": {
+                  "type": "string",
+                  "example": "drug category"
+                },
+                "description": {
+                  "type": "string",
+                  "example": "drug description"
+                }
+              },
+              "required": [
+                "name",
+                "quantity",
+                "category",
+                "description"
+              ]
+            }
+          }
+        ],
+        "responses": {}
+      },
+      "delete": {
+        "tags": [
+          "Drugs"
         ],
         "description": "",
         "parameters": [

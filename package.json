@@ -9,8 +9,8 @@
     "pretest": "cross-env NODE_ENV=test npx sequelize db:migrate",
     "test": "jest --runInBand --forceExit --coverage --silent --detectOpenHandles",
     "test:watch": "jest --watch",
-    "migration": "npx sequelize db:migrate",
-    "migration:undo": "npx sequelize db:migrate:undo",
+    "migration": "cross-env NODE_ENV=dev npx sequelize db:migrate",
+    "migration:undo": "cross-env NODE_ENV=dev npx sequelize db:migrate:undo",
     "lint": "eslint --fix ."
   },
   "author": "",
