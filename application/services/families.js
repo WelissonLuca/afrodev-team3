@@ -6,7 +6,7 @@ exports.register = async (family) => {
     return newFamily;
   } catch (err) {
     console.log(err);
-    const error = new Error('An error ocurred while creating family');
+    const error = new Error('An error occurred while creating family');
     error.statusCode = 500;
     throw error;
   }
@@ -20,7 +20,7 @@ exports.findAll = async (family) => {
     return families;
   } catch (err) {
     console.log(err);
-    const error = new Error('An error ocurred while finding family');
+    const error = new Error('An error occurred while finding family');
     error.statusCode = 500;
     throw error;
   }
@@ -33,7 +33,7 @@ exports.findById = async (id) => {
     return families;
   } catch (err) {
     console.log(err);
-    const error = new Error('An error ocurred while finding families by id');
+    const error = new Error('An error occurred while finding families by id');
     error.statusCode = 500;
     throw error;
   }
@@ -49,7 +49,7 @@ exports.update = async (id, newFamily) => {
     return family;
   } catch (err) {
     console.log(err);
-    const error = new Error('An error ocurred while updating family');
+    const error = new Error('An error occurred while updating family');
     error.statusCode = 500;
     throw error;
   }
@@ -63,7 +63,7 @@ exports.patch = async (id, newFamily) => {
     return await Families.findByPk(id);
   } catch (err) {
     console.log(err);
-    const error = new Error('An error ocurred while updating family');
+    const error = new Error('An error occurred while updating family');
     error.statusCode = 500;
     throw error;
   }
@@ -79,7 +79,7 @@ exports.delete = async (id) => {
     return family;
   } catch (err) {
     console.log(err);
-    const error = new Error('An error ocurred while deleting family');
+    const error = new Error('An error occurred while deleting family');
 
     error.statusCode = 500;
     throw error;
