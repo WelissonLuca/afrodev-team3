@@ -35,7 +35,7 @@ describe('Ensure to get data from API - DRUG', () => {
         category: "outros"
       })
       .expect(202)
-      .then((res) => expect(res.body.quantity).toBe(20))
+      .then((res) => expect(res.body.response.quantity).toBe(20))
 })
  it('Ensure to PATCH endpoint update content', async () => {
        await request.patch('/drug/1').send({

@@ -58,6 +58,7 @@ module.exports = (app) => {
       return invalidRequestReply(request, reply, errors);
     }
     const response = await controller.put(request.params.id, request, reply);
+    console.log(response);
     let objectResponse = {};
     if (response.statusCode) {
       objectResponse = response;
@@ -67,7 +68,7 @@ module.exports = (app) => {
         message: 'Drug update successfully!',
       };
     }
-    return reply.status(response.statusCode || 200).json(objectResponse);
+    return reply.status(response.statusCode || 202).json(objectResponse);
   });
 
   app.patch('/drug/:id', validators.patchValidator(), async (request, reply) => {
@@ -92,7 +93,7 @@ module.exports = (app) => {
         message: 'Drug update successfully!',
       };
     }
-    return reply.status(response.statusCode || 200).json(objectResponse);
+    return reply.status(response.statusCode || 202).json(objectResponse);
   });
 
   app.delete('/drug/:id', async (request, reply) => {

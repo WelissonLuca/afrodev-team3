@@ -6,7 +6,7 @@
   "scripts": {
     "swagger-autogen": "node swagger.js",
     "start": "cross-env NODE_ENV=dev nodemon index.js",
-    "test": "cross-env NODE_ENV=test npx sequelize db:migrate && jest --runInBand --forceExit --coverage",
+    "test": "cross-env NODE_ENV=test npx sequelize db:migrate && jest --silent --runInBand --forceExit --coverage",
     "test:watch": "jest --watch",
     "migration": "cross-env NODE_ENV=dev npx sequelize db:migrate",
     "migration:undo": "cross-env NODE_ENV=dev npx sequelize db:migrate:undo",
