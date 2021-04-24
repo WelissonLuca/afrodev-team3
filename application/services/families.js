@@ -90,13 +90,19 @@ exports.delete = async (id) => {
 
 exports.findAllDeletedAt = async (family) => {
   try {
+
+
     const families = await Families.findAll({
-      where: {
-        family,
+      paranoid: false,
+      where: { 
+      
         deleted_at: {
-          [Op.ne]: null,
+          [Op.not]: null,
         },
       },
+
+      
+      
     });
     return families;
   } catch (err) {
