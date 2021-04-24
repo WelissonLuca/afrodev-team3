@@ -3,7 +3,7 @@ coverage/*
 
 .prettierrc
 .env
-.env.test
+
 .env.dev
  
 

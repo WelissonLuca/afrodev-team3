@@ -70,7 +70,10 @@ module.exports = (app) => {
             in: 'body',
             description: "New ong values",
             schema: {
-
+                "$name": "new ong",
+                "$description": "ong description",
+                "$email": "aaa@aaa.com",
+                "$phone": "(19) 99999-9999"
             }
     } */
     const errors = validators.validateRequest(request);
