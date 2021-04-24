@@ -10,7 +10,7 @@ const invalidRequestReply = (request, reply, errors) =>
 
 module.exports = (app) => {
   app.post('/drug', validators.registerValidator(), async (request, reply) => {
-    /*#swagger.tags = ['Drugs']
+    /* #swagger.tags = ['Drugs']
     #swagger.parameters['post drug object'] = {
         in: 'body',
         description: "New drug values",
@@ -20,8 +20,7 @@ module.exports = (app) => {
           "$category": "drug category",
           "$description": "drug description",
         }
-      }*/
-    console.log(request.body)
+      } */
     const errors = validators.validateRequest(request);
     if (errors.length) {
       return invalidRequestReply(request, reply, errors);
@@ -31,21 +30,19 @@ module.exports = (app) => {
   });
 
   app.get('/drug', async (request, reply) => {
+    /* #swagger.tags = ['Drugs'] */
     const response = await controller.get(request, reply);
     return reply.status(200).json(response);
   });
 
   app.get('/drug/:id', async (request, reply) => {
-    const response = await controller.getById(
-      request.params.id,
-      request,
-      reply
-    );
-    return reply.status(200).json(response);
+    /* #swagger.tags = ['Drugs'] */
+    const response = await controller.getById(request.params.id, request, reply);
+    return reply.status(response.statusCode || 200).json(response);
   });
 
   app.put('/drug/:id', validators.updateValidator(), async (request, reply) => {
-    /*#swagger.tags= ['Drugs']
+    /* #swagger.tags= ['Drugs']
     #swagger.parameters['put drug object'] = {
         in: 'body',
         description: "New drug values",
@@ -55,21 +52,26 @@ module.exports = (app) => {
           "$category": "drug category",
           "$description": "drug description",
         }
-      }*/
+      } */
     const errors = validators.validateRequest(request);
     if (errors.length) {
       return invalidRequestReply(request, reply, errors);
     }
-    const response = await controller.put(
-      request.params.id,
-      request,
-      reply
-    );
-    return reply.status(202).json(response);
+    const response = await controller.put(request.params.id, request, reply);
+    let objectResponse = {};
+    if (response.statusCode) {
+      objectResponse = response;
+    } else {
+      objectResponse = {
+        response,
+        message: 'Drug update successfully!',
+      };
+    }
+    return reply.status(response.statusCode || 200).json(objectResponse);
   });
 
   app.patch('/drug/:id', validators.patchValidator(), async (request, reply) => {
-    /*#swagger.tags = ['Drugs']
+    /* #swagger.tags = ['Drugs']
       #swagger.parameters['patch drug object'] = {
         in: 'body',
         description: "New drug values",
@@ -79,26 +81,32 @@ module.exports = (app) => {
           "$category": "drug category",
           "$description": "drug description",
         }
-      }*/
-    const errors = validators.validateRequest(request);
-    if (errors.length) {
-      return invalidRequestReply(request, reply, errors);
+      } */
+    const response = await controller.patch(request.params.id, request, reply);
+    let objectResponse = {};
+    if (response.statusCode) {
+      objectResponse = response;
+    } else {
+      objectResponse = {
+        response,
+        message: 'Drug update successfully!',
+      };
     }
-    const response = await controller.patch(
-      request.params.id,
-      request,
-      reply
-    );
-    return reply.status(202).json(response);
-    }
-  );
+    return reply.status(response.statusCode || 200).json(objectResponse);
+  });
 
   app.delete('/drug/:id', async (request, reply) => {
-    const response = await controller.delete(
-      request.params.id,
-      request,
-      reply
-    );
-    return reply.status(204).json(response);
-  })
+    /* #swagger.tags = ['Drugs'] */
+    const response = await controller.delete(request.params.id, request, reply);
+    let objectResponse = {};
+    if (response.statusCode) {
+      objectResponse = response;
+    } else {
+      objectResponse = {
+        response,
+        message: 'Drug deleted successfully!',
+      };
+    }
+    return reply.status(response.statusCode || 204).json(objectResponse);
+  });
 };

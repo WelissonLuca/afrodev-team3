@@ -29,10 +29,11 @@ exports.findAll = async (drug) => {
 exports.findById = async (id) => {
   try {
     const drug = await Drug.findByPk(id);
+    if (!drug) return { statusCode: 404, message: `Drug not found whit id ${id}` };
     return drug;
   } catch (err) {
     console.log(err);
-    const error = new Error('An error ocurred while finding drug by id');
+    const error = new Error("An error ocurred while finding drug by id");
     error.statusCode = 500;
     throw error;
   }
@@ -40,11 +41,10 @@ exports.findById = async (id) => {
 
 exports.patch = async (id, newDrug) => {
   try {
-    return await Drug.update(newDrug, {
-      where: {
-        id,
-      },
-    });
+    const drug = await Drug.findByPk(id);
+    if (!drug) return { statusCode: 404, message: `Drug not found whit id ${id}` };
+    await Drug.update(newDrug, { where: { id }  });
+    return await Drug.findByPk(id);
   } catch (err) {
     console.log(err);
     const error = new Error('An error ocurred while updating drug');
@@ -55,11 +55,8 @@ exports.patch = async (id, newDrug) => {
 
 exports.update = async (id, newDrug) => {
   try {
-    const drug = await Drug.findOne({
-      where: {
-        id,
-      },
-    });
+    const drug = await Drug.findByPk(id);
+    if (!drug) return { statusCode: 404, message: `Drug not found whit id ${id}` };
     drug.set(newDrug);
     drug.save();
     return drug;
@@ -73,11 +70,10 @@ exports.update = async (id, newDrug) => {
 
 exports.delete = async (id) => {
   try {
-    const drug = await Drug.destroy({
-      where: {
-        id,
-      },
-    });
+    const drug = await Drug.findByPk(id);
+    if (!drug) return { statusCode: 404, message: `Drug not found whit id ${id}` };
+    drug.destroy();
+    drug.save();
     return drug;
   } catch (err) {
     console.log(err);
