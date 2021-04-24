@@ -16,6 +16,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "brazilian-values": "^0.10.1",
     "consign": "^0.1.6",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",

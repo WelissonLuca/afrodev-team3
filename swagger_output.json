@@ -168,30 +168,7 @@
             "description": "New ong values",
             "schema": {
               "type": "object",
-              "properties": {
-                "name": {
-                  "type": "string",
-                  "example": "new ong"
-                },
-                "description": {
-                  "type": "string",
-                  "example": "ong description"
-                },
-                "email": {
-                  "type": "string",
-                  "example": "aaa@aaa.com"
-                },
-                "phone": {
-                  "type": "string",
-                  "example": "(19) 99999-9999"
-                }
-              },
-              "required": [
-                "name",
-                "description",
-                "email",
-                "phone"
-              ]
+              "properties": {}
             }
           }
         ],
@@ -222,6 +199,276 @@
             "description": "OK"
           }
         }
+      }
+    },
+    "/family": {
+      "post": {
+        "tags": [
+          "Families"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "post family object",
+            "in": "body",
+            "description": "New family values",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "new family"
+                },
+                "birth_date": {
+                  "type": "string",
+                  "example": "2021-04-10"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "aaa@aaa.com"
+                },
+                "phone": {
+                  "type": "string",
+                  "example": "(19) 99999-9999"
+                },
+                "cpf": {
+                  "type": "string",
+                  "example": "469.610.370-62"
+                },
+                "address": {
+                  "type": "string",
+                  "example": "123 Main"
+                },
+                "civil_status": {
+                  "type": "string",
+                  "example": "casado"
+                },
+                "gender": {
+                  "type": "string",
+                  "example": "masculino"
+                },
+                "number_members": {
+                  "type": "number",
+                  "example": 20
+                },
+                "children": {
+                  "type": "number",
+                  "example": 4
+                },
+                "per_capita_income": {
+                  "type": "string",
+                  "example": "1200"
+                }
+              },
+              "required": [
+                "name",
+                "birth_date",
+                "email",
+                "phone",
+                "cpf",
+                "address",
+                "civil_status",
+                "gender",
+                "number_members",
+                "children",
+                "per_capita_income"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Families"
+        ],
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/family/{id}": {
+      "get": {
+        "tags": [
+          "Families"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {}
+      },
+      "put": {
+        "tags": [
+          "Families"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "put family object",
+            "in": "body",
+            "description": "New family values",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "new family"
+                },
+                "birth_date": {
+                  "type": "string",
+                  "example": "2021-04-10"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "aaa@aaa.com"
+                },
+                "phone": {
+                  "type": "string",
+                  "example": "(19) 99999-9999"
+                },
+                "address": {
+                  "type": "string",
+                  "example": "123 Main"
+                },
+                "civil_status": {
+                  "type": "string",
+                  "example": "casado"
+                },
+                "number_members": {
+                  "type": "number",
+                  "example": 20
+                },
+                "children": {
+                  "type": "number",
+                  "example": 4
+                },
+                "per_capita_income": {
+                  "type": "string",
+                  "example": "1200"
+                }
+              },
+              "required": [
+                "name",
+                "birth_date",
+                "email",
+                "phone",
+                "address",
+                "civil_status",
+                "number_members",
+                "children",
+                "per_capita_income"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Families"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "patch family object",
+            "in": "body",
+            "description": "New family values",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "new family"
+                },
+                "birth_date": {
+                  "type": "string",
+                  "example": "2021-04-10"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "aaa@aaa.com"
+                },
+                "phone": {
+                  "type": "string",
+                  "example": "(19) 99999-9999"
+                },
+                "address": {
+                  "type": "string",
+                  "example": "123 Main"
+                },
+                "civil_status": {
+                  "type": "string",
+                  "example": "casado"
+                },
+                "number_members": {
+                  "type": "number",
+                  "example": 20
+                },
+                "children": {
+                  "type": "number",
+                  "example": 4
+                },
+                "per_capita_income": {
+                  "type": "string",
+                  "example": "1200"
+                }
+              },
+              "required": [
+                "name",
+                "birth_date",
+                "email",
+                "phone",
+                "address",
+                "civil_status",
+                "number_members",
+                "children",
+                "per_capita_income"
+              ]
+            }
+          }
+        ],
+        "responses": {}
+      },
+      "delete": {
+        "tags": [
+          "Families"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {}
       }
     },
     "/supply": {

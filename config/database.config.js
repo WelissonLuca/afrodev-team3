@@ -1,4 +1,5 @@
 require('./environment');
+require('dotenv').config();
 
 const config = {
   username: process.env.MYSQL_USERNAME || 'admin',

@@ -1,12 +1,13 @@
 const controller = require('../../controllers/expense');
 const validators = require('../validators/expense');
 
-const invalidRequestReply = (request, reply, errors) =>
+const invalidRequestReply = (request, reply, errors) => {
   reply.status(errors.statusCode || 400).json({
     method: request.method,
     status: reply.statusCode,
     error: errors,
   });
+};
 
 module.exports = (app) => {
   app.post(
