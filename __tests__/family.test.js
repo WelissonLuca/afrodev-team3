@@ -48,7 +48,6 @@ describe('Setting data from API - Family ', () => {
 
 describe('Updating data in API - FAMILY', () => {
   it('Calling PUT endpoint', async () => {
-
     const result = await request
       .post('/family')
       .send({
@@ -64,7 +63,7 @@ describe('Updating data in API - FAMILY', () => {
         children: 4,
         per_capita_income: 200.0,
       });
-    
+
     const { id } = result.body;
 
     await request
@@ -101,7 +100,7 @@ it('Calling PATCH endpoint', async () => {
       children: 4,
       per_capita_income: 200.0,
     });
-  
+
   const { id } = result.body;
   await request
     .patch(`/family/${id}`)
@@ -162,19 +161,49 @@ describe('Setting errors update data from API - Family', () => {
 
 describe('Getting data from API - Family with data', () => {
   it('Calling GET endpoint without parameters', async () => {
+    const result = await request.post('/family').send({
+      name: 'new family',
+      birth_date: '2021-04-10',
+      email: 'aaa@aaa.com',
+      phone: '(19) 99999-9999',
+      cpf: '469.610.370-62',
+      address: '123 Main',
+      civil_status: 'casado',
+      gender: 'masculino',
+      number_members: 20,
+      children: 4,
+      per_capita_income: 200.0,
+    });
+
+    const { id } = result.body;
+    await request;
     await request
       .get('/family')
       .expect(200)
       .then((res) => {
-        
         expect(Array.isArray(res.body)).toBeTruthy();
-        expect(res.body).toHaveLength(3);
+        expect(res.body).toHaveLength(Number(id));
       });
   });
 
   it('Calling GET endpoint by id', async () => {
+    const result = await request.post('/family').send({
+      name: 'new family',
+      birth_date: '2021-04-10',
+      email: 'aaa@aaa.com',
+      phone: '(19) 99999-9999',
+      cpf: '469.610.370-62',
+      address: '123 Main',
+      civil_status: 'casado',
+      gender: 'masculino',
+      number_members: 20,
+      children: 4,
+      per_capita_income: 200.0,
+    });
+
+    const { id } = result.body;
     await request
-      .get('/family/1')
+      .get(`/family/${id}`)
       .expect(200)
       .then((res) => {
         expect(res.body).toHaveProperty('id');
@@ -247,7 +276,7 @@ describe('Setting errors data from API - Family', () => {
 describe('Delete data error id not exists from API - Family', () => {
   it('Calling DELETE endpoint by id error', async () => {
     await request
-      .delete('/family/5')
+      .delete('/family/0')
       .expect(404)
       .then((res) => expect(res.body.error));
   });
@@ -270,7 +299,6 @@ describe('Delete data from API - Family ', () => {
         children: 4,
         per_capita_income: 200.0,
       });
-  
     const { id } = result.body;
     await request
       .delete(`/family/${id}`)
