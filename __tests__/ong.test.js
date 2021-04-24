@@ -1,5 +1,6 @@
 const supertest = require('supertest');
 const app = require('../index');
+const model = require('../application/model/ong');
 
 const request = supertest(app);
 const sequelize = require('../config/connection');
@@ -19,6 +20,11 @@ describe('Getting data from API - ONG', () => {
   });
 
   afterAll(async (done) => {
+    await model.destroy({
+      truncate: true,
+      drop: true,
+      force: true,
+    });
     await sequelize.close();
     done();
   });

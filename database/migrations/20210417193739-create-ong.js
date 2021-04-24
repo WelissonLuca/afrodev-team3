@@ -30,6 +30,10 @@ module.exports = {
       type: Sequelize.DATE,
       allowNull: false,
     },
+    deleted_at: {
+      type: Sequelize.DATE,
+      default: null,
+    },
   }),
 
   down: async (queryInterface) => queryInterface.dropTable('ongs'),

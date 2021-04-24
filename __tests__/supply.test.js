@@ -1,5 +1,6 @@
 const supertest = require('supertest');
 const app = require('../index');
+const model = require('../application/model/supply');
 
 const request = supertest(app);
 const sequelize = require('../config/connection');
@@ -113,7 +114,11 @@ describe('Deleting data in API - SUPPLY', () => {
   });
 
   afterAll(async (done) => {
-    await sequelize.truncate({ force: true });
+    await model.destroy({
+      truncate: true,
+      drop: true,
+      force: true,
+    });
     await sequelize.close();
     done();
   });
