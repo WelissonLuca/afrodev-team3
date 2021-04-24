@@ -29,7 +29,7 @@ exports.delete = async (id) => {
   return result;
 };
 
-exports.get = async (request) => {
+exports.getDeleted = async (request) => {
   const result = await familyService.findAllDeletedAt(request.body);
   return result;
 };

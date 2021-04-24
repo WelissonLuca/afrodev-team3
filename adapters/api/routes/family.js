@@ -45,7 +45,7 @@ module.exports = (app) => {
 
   app.get('/family/cancelleds', async (request, reply) => {
     /* #swagger.tags = ['Families'] */
-    const response = await controller.get(request, reply);
+    const response = await controller.getDeleted(request, reply);
     return reply.status(200).json(response);
   });
 
