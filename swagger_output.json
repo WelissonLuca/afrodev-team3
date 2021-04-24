@@ -739,7 +739,8 @@
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "integer",
+            "description": "expense ID"
           }
         ],
         "responses": {
@@ -767,7 +768,7 @@
             "in": "path",
             "required": true,
             "type": "string",
-            "description": "Expense Category"
+            "description": "expense Category"
           }
         ],
         "responses": {
@@ -795,7 +796,7 @@
             "in": "path",
             "required": true,
             "type": "string",
-            "description": "Expense Type",
+            "description": "expense Type",
             "enum": [
               "purchase",
               "bill",

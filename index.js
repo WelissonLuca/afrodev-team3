@@ -5,6 +5,8 @@ const swaggerUi = require('swagger-ui-express');
 const sequelize = require('./config/connection');
 const swaggerDocument = require('./swagger_output.json');
 
+const PORT = process.env.NODE_ENV !== 'test' ? 3000 : 5000;
+
 const app = express();
 
 const start = async () => {
@@ -31,7 +33,7 @@ const start = async () => {
 
     consign().include('adapters/api/routes').into(app);
 
-    app.listen(3000, () => console.log('listening port 3000'));
+    app.listen(PORT, () => console.log('listening port', PORT));
   } catch (err) {
     console.log(err);
     process.exit(1);

@@ -126,8 +126,12 @@ exports.delete = async (id) => {
     if (!expense) {
       return { statusCode: 404, message: `Expense not found with id ${id}` };
     }
-    Expense.destroy();
-    Expense.save();
+    expense.destroy();
+    expense.save().then(async () => {
+      const idMax = await Expense.max('id');
+      const sql = `ALTER TABLE expenses AUTO_INCREMENT=${idMax}`;
+      await Expense.sequelize.query(sql);
+    });
     return expense;
   } catch (err) {
     console.error(err);

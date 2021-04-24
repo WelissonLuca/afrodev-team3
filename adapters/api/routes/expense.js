@@ -1,11 +1,12 @@
 const controller = require('../../controllers/expense');
 const validators = require('../validators/expense');
 
-const invalidRequestReply = (request, reply, errors) => reply.status(errors.statusCode || 400).json({
-  method: request.method,
-  status: reply.statusCode,
-  error: errors,
-});
+const invalidRequestReply = (request, reply, errors) =>
+  reply.status(errors.statusCode || 400).json({
+    method: request.method,
+    status: reply.statusCode,
+    error: errors,
+  });
 
 module.exports = (app) => {
   app.post(
@@ -69,7 +70,7 @@ module.exports = (app) => {
     /*  #swagger.tags = ['Expenses']
         #swagger.parameters['category'] = {
                 in: 'path',
-                description: 'Expense Category',
+                description: 'expense Category',
                 required: true,
                 type: 'string'
         }
@@ -88,11 +89,10 @@ module.exports = (app) => {
   });
 
   app.get('/expense/type/:type', async (request, reply) => {
-    //  #swagger.tags = ['Expenses']
     /*  #swagger.tags = ['Expenses']
         #swagger.parameters['type'] = {
                 in: 'path',
-                description: 'Expense Type',
+                description: 'expense Type',
                 required: true,
                 type: 'string',
                 enum: ['purchase', 'bill', 'salary', 'transport', 'maintenance']
@@ -192,7 +192,14 @@ module.exports = (app) => {
   );
 
   app.delete('/expense/:id', async (request, reply) => {
-    //  #swagger.tags = ['Expenses']
+    /*  #swagger.tags = ['Expenses']
+        #swagger.parameters['id'] = {
+                in: 'path',
+                description: 'expense ID',
+                required: true,
+                type: 'integer'
+        }
+    */
     const response = await controller.delete(request.params.id, request, reply);
     if (response.statusCode) {
       // #swagger.responses[400]
