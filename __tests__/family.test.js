@@ -48,8 +48,27 @@ describe('Setting data from API - Family ', () => {
 
 describe('Updating data in API - FAMILY', () => {
   it('Calling PUT endpoint', async () => {
+
+    const result = await request
+      .post('/family')
+      .send({
+        name: 'new family',
+        birth_date: '2021-04-10',
+        email: 'aaa@aaa.com',
+        phone: '(19) 99999-9999',
+        cpf: '469.610.370-62',
+        address: '123 Main',
+        civil_status: 'casado',
+        gender: 'masculino',
+        number_members: 20,
+        children: 4,
+        per_capita_income: 200.0,
+      });
+    
+    const { id } = result.body;
+
     await request
-      .put('/family/1')
+      .put(`/family/${id}`)
       .send({
         name: 'My family',
         email: 'bb@bbb.com',
@@ -61,18 +80,35 @@ describe('Updating data in API - FAMILY', () => {
         children: 4,
         per_capita_income: 200.0,
       })
-      .expect(202)
+      .expect(200)
       .then((res) => expect(res.body.updated_at).toBeTruthy());
   });
 });
 
 it('Calling PATCH endpoint', async () => {
+  const result = await request
+    .post('/family')
+    .send({
+      name: 'new family',
+      birth_date: '2021-04-10',
+      email: 'aaa@aaa.com',
+      phone: '(19) 99999-9999',
+      cpf: '469.610.370-62',
+      address: '123 Main',
+      civil_status: 'casado',
+      gender: 'masculino',
+      number_members: 20,
+      children: 4,
+      per_capita_income: 200.0,
+    });
+  
+  const { id } = result.body;
   await request
-    .patch('/family/1')
+    .patch(`/family/${id}`)
     .send({
       name: 'John Doe',
     })
-    .expect(202)
+    .expect(200)
     .then((res) => expect(res.body.name).toBe(res.body.name));
 });
 
@@ -130,8 +166,9 @@ describe('Getting data from API - Family with data', () => {
       .get('/family')
       .expect(200)
       .then((res) => {
+        
         expect(Array.isArray(res.body)).toBeTruthy();
-        expect(res.body).toHaveLength(1);
+        expect(res.body).toHaveLength(3);
       });
   });
 
@@ -218,8 +255,25 @@ describe('Delete data error id not exists from API - Family', () => {
 
 describe('Delete data from API - Family ', () => {
   it('Calling DELETE endpoint by id', async () => {
+    const result = await request
+      .post('/family')
+      .send({
+        name: 'new family',
+        birth_date: '2021-04-10',
+        email: 'aaa@aaa.com',
+        phone: '(19) 99999-9999',
+        cpf: '469.610.370-62',
+        address: '123 Main',
+        civil_status: 'casado',
+        gender: 'masculino',
+        number_members: 20,
+        children: 4,
+        per_capita_income: 200.0,
+      });
+  
+    const { id } = result.body;
     await request
-      .delete('/family/1')
+      .delete(`/family/${id}`)
       .expect(204);
   });
   afterAll(async (done) => {

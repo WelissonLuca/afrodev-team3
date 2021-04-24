@@ -75,7 +75,7 @@ module.exports = (app) => {
     }
     const response = await controller.put(request.params.id, request, reply);
 
-    return reply.status(response.statusCode || 202).json(response);
+    return reply.status(response.statusCode || 200).json(response);
   });
 
   app.patch('/family/:id', validators.patchValidator(), async (request, reply) => {
@@ -97,7 +97,7 @@ module.exports = (app) => {
         }
       } */
     const response = await controller.patch(request.params.id, request, reply);
-    return reply.status(response.statusCode || 202).json({
+    return reply.status(response.statusCode || 200).json({
       response,
       message: 'family update successfully',
     });
