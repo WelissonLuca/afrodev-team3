@@ -168,7 +168,30 @@
             "description": "New ong values",
             "schema": {
               "type": "object",
-              "properties": {}
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "new ong"
+                },
+                "description": {
+                  "type": "string",
+                  "example": "ong description"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "aaa@aaa.com"
+                },
+                "phone": {
+                  "type": "string",
+                  "example": "(19) 99999-9999"
+                }
+              },
+              "required": [
+                "name",
+                "description",
+                "email",
+                "phone"
+              ]
             }
           }
         ],
@@ -277,6 +300,9 @@
           }
         ],
         "responses": {
+          "201": {
+            "description": "Created"
+          },
           "400": {
             "description": "Bad Request"
           }
@@ -288,7 +314,11 @@
         ],
         "description": "",
         "parameters": [],
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
       }
     },
     "/family/{id}": {
@@ -458,6 +488,198 @@
       "delete": {
         "tags": [
           "Families"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/drug": {
+      "post": {
+        "tags": [
+          "Drugs"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "post drug object",
+            "in": "body",
+            "description": "New drug values",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "new drug"
+                },
+                "quantity": {
+                  "type": "string",
+                  "example": "999.999"
+                },
+                "category": {
+                  "type": "string",
+                  "example": "drug category"
+                },
+                "description": {
+                  "type": "string",
+                  "example": "drug description"
+                }
+              },
+              "required": [
+                "name",
+                "quantity",
+                "category",
+                "description"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Drugs"
+        ],
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/drug/{id}": {
+      "get": {
+        "tags": [
+          "Drugs"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {}
+      },
+      "put": {
+        "tags": [
+          "Drugs"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "put drug object",
+            "in": "body",
+            "description": "New drug values",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "new drug"
+                },
+                "quantity": {
+                  "type": "string",
+                  "example": "999.999"
+                },
+                "category": {
+                  "type": "string",
+                  "example": "drug category"
+                },
+                "description": {
+                  "type": "string",
+                  "example": "drug description"
+                }
+              },
+              "required": [
+                "name",
+                "quantity",
+                "category",
+                "description"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Drugs"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "patch drug object",
+            "in": "body",
+            "description": "New drug values",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "new drug"
+                },
+                "quantity": {
+                  "type": "string",
+                  "example": "999.999"
+                },
+                "category": {
+                  "type": "string",
+                  "example": "drug category"
+                },
+                "description": {
+                  "type": "string",
+                  "example": "drug description"
+                }
+              },
+              "required": [
+                "name",
+                "quantity",
+                "category",
+                "description"
+              ]
+            }
+          }
+        ],
+        "responses": {}
+      },
+      "delete": {
+        "tags": [
+          "Drugs"
         ],
         "description": "",
         "parameters": [
@@ -741,181 +963,329 @@
         }
       }
     },
-    "/drug": {
+    "/expense": {
       "post": {
-        "tags": [],
+        "tags": [
+          "Expenses"
+        ],
         "description": "",
         "parameters": [
           {
-            "name": "post drug object",
+            "name": "post expense object",
             "in": "body",
-            "description": "New drug values",
+            "description": "New expense values",
             "schema": {
               "type": "object",
               "properties": {
-                "name": {
+                "description": {
                   "type": "string",
-                  "example": "new drug"
+                  "example": "Purchase of 50kg of White Rice"
                 },
-                "quantity": {
-                  "type": "string",
-                  "example": "999.999"
+                "value": {
+                  "type": "number",
+                  "example": 225
                 },
                 "category": {
                   "type": "string",
-                  "example": "drug category"
+                  "example": "purchase of aliments"
                 },
-                "description": {
+                "type": {
                   "type": "string",
-                  "example": "drug description"
+                  "example": "purchase"
+                },
+                "date": {
+                  "type": "string",
+                  "example": "2021-04-23"
+                },
+                "status": {
+                  "type": "string",
+                  "example": "released"
                 }
               },
               "required": [
-                "name",
-                "quantity",
+                "description",
+                "value",
                 "category",
-                "description"
+                "type",
+                "date",
+                "status"
               ]
             }
           }
         ],
         "responses": {
+          "201": {
+            "description": "Created"
+          },
           "400": {
             "description": "Bad Request"
           }
         }
       },
       "get": {
-        "tags": [],
+        "tags": [
+          "Expenses"
+        ],
         "description": "",
         "parameters": [],
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
       }
     },
-    "/drug/{id}": {
+    "/expense/{id}": {
       "get": {
-        "tags": [],
+        "tags": [
+          "Expenses"
+        ],
         "description": "",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "integer",
+            "description": "expense ID"
           }
         ],
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
       },
       "put": {
-        "tags": [],
+        "tags": [
+          "Expenses"
+        ],
         "description": "",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "integer",
+            "description": "expense ID"
           },
           {
-            "name": "put drug object",
+            "name": "put expense object",
             "in": "body",
-            "description": "New drug values",
+            "description": "New expense values",
             "schema": {
               "type": "object",
               "properties": {
-                "name": {
+                "description": {
                   "type": "string",
-                  "example": "new drug"
+                  "example": "Purchase of 50kg of White Rice"
                 },
-                "quantity": {
-                  "type": "string",
-                  "example": "999.999"
+                "value": {
+                  "type": "number",
+                  "example": 230
                 },
                 "category": {
                   "type": "string",
-                  "example": "drug category"
+                  "example": "purchase of aliments"
                 },
-                "description": {
+                "type": {
                   "type": "string",
-                  "example": "drug description"
+                  "example": "purchase"
+                },
+                "date": {
+                  "type": "string",
+                  "example": "2021-04-24"
+                },
+                "status": {
+                  "type": "string",
+                  "example": "approved"
                 }
               },
               "required": [
-                "name",
-                "quantity",
+                "description",
+                "value",
                 "category",
-                "description"
+                "type",
+                "date",
+                "status"
               ]
             }
           }
         ],
         "responses": {
+          "202": {
+            "description": "Accepted"
+          },
           "400": {
             "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
           }
         }
       },
       "patch": {
-        "tags": [],
+        "tags": [
+          "Expenses"
+        ],
         "description": "",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "integer",
+            "description": "expense ID"
           },
           {
-            "name": "patch drug object",
+            "name": "patch expense object",
             "in": "body",
-            "description": "New drug values",
+            "description": "New expense values",
             "schema": {
               "type": "object",
               "properties": {
-                "name": {
+                "description": {
                   "type": "string",
-                  "example": "new drug"
+                  "example": "Purchase of 500kg of White Rice"
                 },
-                "quantity": {
-                  "type": "string",
-                  "example": "999.999"
+                "value": {
+                  "type": "number",
+                  "example": 2300
                 },
                 "category": {
                   "type": "string",
-                  "example": "drug category"
+                  "example": "purchase of aliments"
                 },
-                "description": {
+                "type": {
                   "type": "string",
-                  "example": "drug description"
+                  "example": "purchase"
+                },
+                "date": {
+                  "type": "string",
+                  "example": "2021-04-25"
+                },
+                "status": {
+                  "type": "string",
+                  "example": "rejected"
                 }
               },
               "required": [
-                "name",
-                "quantity",
+                "description",
+                "value",
                 "category",
-                "description"
+                "type",
+                "date",
+                "status"
               ]
             }
           }
         ],
         "responses": {
+          "202": {
+            "description": "Accepted"
+          },
           "400": {
             "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
           }
         }
       },
       "delete": {
-        "tags": [],
+        "tags": [
+          "Expenses"
+        ],
         "description": "",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "integer",
+            "description": "expense ID"
           }
         ],
-        "responses": {}
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/expense/category/{category}": {
+      "get": {
+        "tags": [
+          "Expenses"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "category",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "expense Category"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/expense/type/{type}": {
+      "get": {
+        "tags": [
+          "Expenses"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "type",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "expense Type",
+            "enum": [
+              "purchase",
+              "bill",
+              "salary",
+              "transport",
+              "maintenance"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
       }
     }
   },

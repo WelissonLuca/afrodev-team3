@@ -33,7 +33,7 @@ exports.findById = async (id) => {
     return drug;
   } catch (err) {
     console.log(err);
-    const error = new Error("An error ocurred while finding drug by id");
+    const error = new Error('An error ocurred while finding drug by id');
     error.statusCode = 500;
     throw error;
   }
@@ -43,7 +43,7 @@ exports.patch = async (id, newDrug) => {
   try {
     const drug = await Drug.findByPk(id);
     if (!drug) return { statusCode: 404, message: `Drug not found whit id ${id}` };
-    await Drug.update(newDrug, { where: { id }  });
+    await Drug.update(newDrug, { where: { id } });
     return await Drug.findByPk(id);
   } catch (err) {
     console.log(err);

@@ -10,12 +10,10 @@ describe('Getting data from API - ONG', () => {
   });
 
   it('Calling GET endpoint without parameters', async () => {
-    // Sends GET Request to /test endpoint
-
-    const res = await request.get('/ong');
-    expect(res.status).toBe(200);
-    expect(res.body).toStrictEqual([]);
-    // ...
+    await request
+      .get('/ong')
+      .expect(200)
+      .then((res) => expect(Array.isArray(res.body)).toBeTruthy());
   });
 
   afterAll(async (done) => {

@@ -46,5 +46,5 @@ exports.patchValidator = () => [
   check('quantity')
     .optional(),
   check('category')
-    .optional()
+    .optional(),
 ];
