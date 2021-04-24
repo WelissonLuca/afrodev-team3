@@ -16,9 +16,9 @@ exports.registerValidator = () => [
   check('quantity')
     .notEmpty()
     .withMessage('quantity is required and pass only numbers'),
-  check('type')
+  check('category')
     .notEmpty()
-    .withMessage('Pass drug type'),
+    .withMessage('Pass drug category'),
 ];
 
 exports.updateValidator = () => [
@@ -32,23 +32,19 @@ exports.updateValidator = () => [
   check('quantity')
     .notEmpty()
     .withMessage('quantity is required and pass only numbers'),
-  check('type')
+  check('category')
     .notEmpty()
-    .withMessage('Pass drug type'),
+    .withMessage('Pass drug category'),
 ];
 
 exports.patchValidator = () => [
   check('name')
-    .notEmpty()
-    .withMessage('name is required'),
+    .optional(),
   check('description')
-    .notEmpty()
-    .isLength({ max: 100 })
-    .withMessage('description must have less then 100 characters'),
+    .optional()
+    .isLength({ max: 100 }),
   check('quantity')
-    .notEmpty()
-    .withMessage('quantity is required and pass only numbers'),
-  check('type')
-    .notEmpty()
-    .withMessage('Pass drug type'),
+    .optional(),
+  check('category')
+    .optional()
 ];

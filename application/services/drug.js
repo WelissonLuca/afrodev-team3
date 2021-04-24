@@ -55,7 +55,11 @@ exports.patch = async (id, newDrug) => {
 
 exports.update = async (id, newDrug) => {
   try {
-    const drug = await Drug.findOne({ id });
+    const drug = await Drug.findOne({
+      where: {
+        id,
+      },
+    });
     drug.set(newDrug);
     drug.save();
     return drug;

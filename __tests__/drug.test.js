@@ -10,38 +10,40 @@ describe('Ensure to get data from API - DRUG', () => {
     await sequelize.authenticate()
   })
   it('Ensure to GET Endpoint without parameters return content', async () => {
-    const res = await request.get('/drug')
-    expect(res.status).toBe(200)
-    expect(Array.isArray(res.body)).toBeTruthy()
+     await request.get('/drug')
+    .expect(200)
+    .then((res) => expect(Array.isArray(res.body)).toBeTruthy())
   })
+
   it('Ensure to POST endpoint insert content on database', async () => {
-   
-     const res = await request.post('/drug').send({
-      name: "Benegrip",
-      description: "Medicamento para gripe",
-      quantity: 18.1,
-      category: "Comum"
+      await request
+      .post('/drug')
+      .send({
+        name: "Benegrip",
+        description: "Medicamento para gripe",
+        quantity: 18,
+        category: "outros"
      })
-     expect(201)
-     expect(res.body.created_at).toBeTruthy()
-    })
+      .expect(201)
+      .then((res) => expect(res.body.created_at).toBeTruthy());
+})
  it('Ensure to PUT endpoint update content', async () => {
-    const res = await request.put('/drug/1').send({
+     await request.put('/drug/1').send({
         name: "Benegrip",
         description: "Medicamento para gripe",
         quantity: 20,
-        category: "Comum"
+        category: "outros"
       })
-      expect(202)
-      expect(res.body.quantity).toBe(20)
-    })
+      .expect(202)
+      .then((res) => expect(res.body.quantity).toBe(20))
+})
  it('Ensure to PATCH endpoint update content', async () => {
-      const res = await request.put('/drug/1').send({
+       await request.patch('/drug/1').send({
         quantity: 10,
       })
-      expect(202)
-      expect(res.body.quantity).toBe(10)
-    })
+      .expect(202)
+      .then((res) => expect(res.body.quantity).toBe(res.body.quantity))
+})
   afterAll(async (done) => {
     await sequelize.truncate({force: true})
     await sequelize.close()
