@@ -32,6 +32,10 @@ module.exports = {
         allowNull: false,
         defaultValue: 0,
       },
+      family_id: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+      },
       created_at: {
         allowNull: false,
         type: Sequelize.DATE,

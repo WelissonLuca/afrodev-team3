@@ -12,4 +12,6 @@ Drug.init(connection);
 Family.init(connection);
 Supply.init(connection);
 
+Family.hasMany(Supply);
+
 module.exports = connection;

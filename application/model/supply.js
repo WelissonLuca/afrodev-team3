@@ -37,6 +37,14 @@ class Supply extends Model {
           allowNull: false,
           defaultValue: 0,
         },
+        familyId: {
+          type: DataTypes.INTEGER,
+          allowNull: false,
+          references: {
+            model: 'Families',
+            key: 'id'
+          }
+        }
       },
       {
         sequelize,

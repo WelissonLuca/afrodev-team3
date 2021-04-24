@@ -1,8 +1,13 @@
 const Families = require('../model/families');
+const Supply = require('../model/supply');
+const supplyService = require('./supply');
 
 exports.register = async (family) => {
   try {
     const newFamily = await Families.create(family);
+    family.supplies.forEach(async (item, index) => {
+      newFamily.addSupply(await supplyService.findAll({ id: item }));
+    })
     return newFamily;
   } catch (err) {
     console.error(err);
@@ -16,6 +21,7 @@ exports.findAll = async (family) => {
   try {
     const families = await Families.findAll({
       where: family,
+      include: Supply
     });
     return families;
   } catch (err) {
